@@ -4,6 +4,8 @@ import com.google.common.base.Preconditions;
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
 import de.ideasy.backend.persistence.mysql.MySQLClient;
 import de.ideasy.backend.persistence.mysql.MySQLInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
@@ -13,10 +15,14 @@ import java.sql.SQLException;
 public class DataManager implements IDataManager {
 
     private final MySQLClient mySQLClient;
+    private final Logger logger;
 
     public DataManager(final MySQLInfo mySQLInfo) {
         Preconditions.checkNotNull(mySQLInfo, "The MySQLInfo cannot be null");
+        this.logger = LoggerFactory.getLogger(DataManager.class);
+        this.logger.info("connecting to mysql server...");
         this.mySQLClient = new MySQLClient(mySQLInfo);
+        this.logger.info("connected!");
     }
 
     @Override
