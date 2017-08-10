@@ -49,7 +49,7 @@ public class MySQLClient {
 
     public User getById(int id) throws SQLException {
         try (Connection connection = this.hikariDataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT ideasyUserData.*, ideasyUser.email, ideasyUser.password FROM `ideasyUserData` LEFT JOIN `ideasyUser` ON ideasyUserData.id = ideasyUser.id WHERE id = ?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT ideasyUserData.*, ideasyUser.email, ideasyUser.password FROM `ideasyUserData` LEFT JOIN `ideasyUser` ON ideasyUserData.id = ideasyUser.id WHERE " + TABLE_IDEASY_USER + ".id = ?;")) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()) return null;
@@ -84,7 +84,7 @@ public class MySQLClient {
     public User getByEmail(final String email) throws SQLException {
         Preconditions.checkNotNull(email, "The email cannot be null");
         try (Connection connection = this.hikariDataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT ideasyUserData.*, ideasyUser.password FROM `ideasyUserData` LEFT JOIN `ideasyUser` ON ideasyUserData.id = ideasyUser.id WHERE email LIKE ?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT ideasyUserData.*, ideasyUser.password FROM `ideasyUserData` LEFT JOIN `ideasyUser` ON ideasyUserData.id = ideasyUser.id WHERE " + TABLE_IDEASY_USER + ".email LIKE ?;")) {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()) return null;

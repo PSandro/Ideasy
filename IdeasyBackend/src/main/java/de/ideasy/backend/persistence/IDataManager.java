@@ -2,6 +2,7 @@ package de.ideasy.backend.persistence;
 
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
 
+import java.sql.SQLException;
 import java.util.Set;
 
 /**
@@ -9,8 +10,8 @@ import java.util.Set;
  */
 public interface IDataManager {
 
-    User getUserById(int id) throws UserNotFoundException;
+    User getUserById(int id) throws UserNotFoundException, SQLException;
 
-    User getUserByEmail(final String email) throws UserNotFoundException;
+    User getUserByEmail(final String email) throws UserNotFoundException, SQLException;
 
 }

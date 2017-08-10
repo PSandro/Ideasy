@@ -6,6 +6,7 @@ import de.ideasy.backend.persistence.User;
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
 import de.ideasy.backend.persistence.mysql.MySQLInfo;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -17,10 +18,13 @@ public final class IdeasyBackendRuntime {
 
     public IdeasyBackendRuntime() {
         this.dataManager = new DataManager(new MySQLInfo(
-                "",
-                "",
+                "psandro.de",
+                "*",
                 "ideasy",
-                "", 3306));
+                "*"
+                , 3306));
+
+        this.inputTest();
     }
 
     public static void main(String[] args) {
@@ -28,18 +32,25 @@ public final class IdeasyBackendRuntime {
     }
 
 
-    /*public void inputTest() {
-        System.out.println("please enter an userId:");
-        Scanner input = new Scanner(System.in);
-        int userId = input.nextInt();
+    public void inputTest() {
+        new Thread(() -> {
+            Scanner input = new Scanner(System.in);
+            System.out.println("please enter an email:");
+            while (input.hasNext()) {
 
-        try {
-            User user = this.dataManager.getUserById(userId);
-            System.out.println(user.toString() + "\n");
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-        }
+                String email = input.nextLine();
+                try {
+                    User user = this.dataManager.getUserByEmail(email);
+                    System.out.println(user.toString() + "\n");
+                } catch (UserNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("please enter an email:");
+            }
+        }).start();
 
-    }*/
+    }
 
 }
