@@ -6,6 +6,8 @@ package de.ideasy.backend.persistence;
 
 public final class UserInformation {
 
+
+
     private final int id;
     private final String firstName;
     private final String lastName;
