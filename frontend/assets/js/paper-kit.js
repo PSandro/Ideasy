@@ -145,11 +145,13 @@ pk = {
                 if(transparent) {
                     transparent = false;
                     $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
+                    $('#logo').attr('src', 'ideasy-logo-black.png');
                 }
             } else {
                 if( !transparent ) {
                     transparent = true;
                     $('.navbar[color-on-scroll]').addClass('navbar-transparent');
+                    $('#logo').attr('src', 'ideasy-logo-white.png');
                 }
             }
     }, 17),
