@@ -145,13 +145,17 @@ pk = {
                 if(transparent) {
                     transparent = false;
                     $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
-                    $('#logo').attr('src', 'ideasy-logo-black.png');
+                    $('#logo').attr('src', 'ideasy-logo-grey.png');
+                    $('#logo').attr('height', '26');
+                    $('#logo').attr('width', '130');
                 }
             } else {
                 if( !transparent ) {
                     transparent = true;
                     $('.navbar[color-on-scroll]').addClass('navbar-transparent');
                     $('#logo').attr('src', 'ideasy-logo-white.png');
+                    $('#logo').attr('height', '40');
+                    $('#logo').attr('width', '200');
                 }
             }
     }, 17),
