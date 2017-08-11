@@ -15,6 +15,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
 
+
     <style>
         body {
             background: url(assets/img/bg2.jpg) no-repeat center center fixed; 
@@ -56,6 +57,7 @@
         }
         .sendtextbtn {
             margin: 30px auto;
+
         }
     </style>
 </head>
@@ -74,10 +76,12 @@
             <div class="collapse navbar-collapse" id="navbarToggler">
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
+
                       <a href="#about" class="nav-link"><i class="nc-icon"></i>Was ist IDEasy</a>
                   </li>
                   <li class="nav-item">
                       <a href="#loginreg" class="nav-link"><i class="nc-icon"></i>Registrieren</a>
+     
                   </li>
 
                   <li class="nav-item">
@@ -102,10 +106,6 @@
     		</div>
 
     	</div>
-        
-        
-        
-        
         <div id="about" class="section text-center">
             <div class="container">
                 <div class="row">
@@ -167,12 +167,7 @@
 					</div>
 				</div>
 			</div>
-        
-        
-  
-        
-        
-        
+
         <div id="loginreg" class="main">
           <div class="section section-nucleo-icons">
               <div class="container">
@@ -184,6 +179,7 @@
                                                                           <ul id="tabs" class="nav nav-tabs" role="tablist">
                                                                               <li class="nav-item">
                                                                                   <a class="nav-link active" data-toggle="tab" href="#register" role="tab">Registrieren</a>
+                                                                                  
                                                                               </li>
                                                                               <li class="nav-item">
                                                                                   <a class="nav-link" data-toggle="tab" href="#login" role="tab">Login</a>
@@ -193,8 +189,8 @@
                                                                   </div>
                                                                   <div id="my-tab-content" class="tab-content text-center">
                                                                       <div class="tab-pane active" id="register" role="tabpanel">
-
                                                                         <h2>Account erstellen</h2>
+
                                                                         <div class="col-md-8 offset-md-2">
                                                                         <hr>
                                                                         </div>
@@ -248,6 +244,7 @@
                                                           							</div>
                                                                         <div class="input-group form-group">
                                                                             <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
+
                                                           								<input type="text" class="form-control" placeholder="Passwort">
                                                           							</div>
                                                                         <button type="button" class="btn btn-info btn-round">Login</button>
@@ -298,18 +295,19 @@
                     </div>
                 </div>
             </div>
-                 
     <footer class="footer">
         <div class="container">
             <div class="row">
                 <nav class="footer-nav">
                     <ul>
                         <li><a href="">Impressum</a></li>
+
                     </ul>
                 </nav>
                 <div class="credits ml-auto">
                     <span class="copyright">
                         © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> at Code+Design Camp
+
                     </span>
                 </div>
             </div>
@@ -345,7 +343,6 @@
             </script>
     
     <script src="assets/js/scroll.js" type="text/javascript"></script>
-
 <script src="assets/js/jquery-3.2.1.js" type="text/javascript"></script>
 <script src="assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
 <script src="assets/js/tether.min.js" type="text/javascript"></script>
@@ -355,5 +352,4 @@
 <script src="assets/js/moment.min.js"></script>
 <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 <script src="assets/js/paper-kit.js?v=2.0.0"></script>
-
 </html>
