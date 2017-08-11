@@ -1,5 +1,7 @@
 package de.ideasy.backend.business.information;
 
+import de.ideasy.backend.persistence.User;
+
 /**
  * Created by sandro on 11.08.17.
  */
@@ -29,5 +31,13 @@ public enum UserAttribut {
 
     public String getFieldName() {
         return fieldName;
+    }
+
+    public static UserAttribut fetchByFieldName(final String fieldName) {
+        for (UserAttribut userAttribut : UserAttribut.values()) {
+            if (fieldName.equalsIgnoreCase(userAttribut.getFieldName()))
+                return userAttribut;
+        }
+        return null;
     }
 }

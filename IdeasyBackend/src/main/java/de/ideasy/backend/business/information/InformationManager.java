@@ -3,8 +3,10 @@ package de.ideasy.backend.business.information;
 import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import de.ideasy.backend.business.customer.SecurityCustomer;
 import de.ideasy.backend.persistence.IDataManager;
 import de.ideasy.backend.persistence.User;
+import de.ideasy.backend.persistence.exception.CustomerNotFoundException;
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
 
 import java.sql.SQLException;
@@ -43,6 +45,11 @@ public class InformationManager implements IInformationManager {
         } catch (UserNotFoundException e) {
             return false;
         }
+    }
+
+    @Override
+    public SecurityCustomer getCustomer(String key) throws CustomerNotFoundException, SQLException {
+        return this.dataManager.getSecurityCustomer(key);
     }
 
     @Override
