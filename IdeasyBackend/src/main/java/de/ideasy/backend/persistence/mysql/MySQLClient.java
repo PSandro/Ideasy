@@ -3,6 +3,8 @@ package de.ideasy.backend.persistence.mysql;
 import com.google.common.base.Preconditions;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import de.ideasy.backend.business.information.FormattedAddress;
+import de.ideasy.backend.business.information.HomeAddress;
 import de.ideasy.backend.persistence.User;
 import de.ideasy.backend.persistence.UserInformation;
 
@@ -93,6 +95,40 @@ public class MySQLClient {
             final String placeOfBirth = resultSet.getString("placeOfBirth");
             final String nationality = resultSet.getString("nationality");
             final String address = resultSet.getString("address");
+            final String idCardId = resultSet.getString("idCardId");
+            final String eyeColor = resultSet.getString("eyeColor");
+            final long idCardExpiration = resultSet.getLong("idCardExpiration");
+            resultSet.close();
+            final UserInformation userInformation = new UserInformation(
+                    id,
+                    firstName,
+                    lastName,
+                    birth,
+                    placeOfBirth,
+                    nationality,
+                    idCardId,
+                    eyeColor,
+                    address, idCardExpiration);
+
+            return new User(id, email, password, userInformation);
+        }
+    }
+    public User getByAddress(String address) throws SQLException {
+        Preconditions.checkNotNull(address, "The email cannot be null");
+        try (Connection connection = this.hikariDataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT ideasyUserData.*, ideasyUser.password FROM `ideasyUserData` LEFT JOIN `ideasyUser` ON ideasyUserData.id = ideasyUser.id WHERE " + TABLE_IDEASY_USER_DATA + ".address LIKE ?;")) {
+            preparedStatement.setString(1, address);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) return null;
+            final int id = resultSet.getInt("id");
+            final String password = resultSet.getString(TABLE_IDEASY_USER + ".password");
+
+            final String firstName = resultSet.getString("firstName");
+            final String lastName = resultSet.getString("lastName");
+            final long birth = resultSet.getLong("birth");
+            final String placeOfBirth = resultSet.getString("placeOfBirth");
+            final String nationality = resultSet.getString("nationality");
+            final String email = resultSet.getString("email");
             final String idCardId = resultSet.getString("idCardId");
             final String eyeColor = resultSet.getString("eyeColor");
             final long idCardExpiration = resultSet.getLong("idCardExpiration");

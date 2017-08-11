@@ -1,5 +1,7 @@
 package de.ideasy.backend.persistence.exception;
 
+import de.ideasy.backend.business.information.HomeAddress;
+
 import java.io.IOException;
 
 /**
@@ -14,4 +16,9 @@ public class UserNotFoundException extends IdeasyPersistenceException {
     public UserNotFoundException(final String email) {
         super("No user with the email " + email + " was found!");
     }
+
+    public UserNotFoundException(final HomeAddress homeAddress) {
+        super("No user with the homeAddres (city=" + homeAddress.getCityName() + ",...) was found!");
+    }
+
 }
