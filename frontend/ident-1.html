@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/ident.css">
     <style>
         body {
-            
+            margin-left: 40px;
             }
         
         .header {
@@ -128,23 +128,35 @@
     </style>
 </head>
     <body>
-        <div class="header">
-            <h1>Hallo Tim,</h1>
-        <h3>Nur noch ein Schritt bis Dein Account bestätigt ist.</h3>
+        
+        <h2>Bitte überprüfe nochmal Deine Daten</h2><br/>
+        <div class="col-md-3">
+<h3>Max Müller</h3><br/>
+                                                    <div class="input-group form-group">
+                                                        <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
+                                                        <input type="email" id="email" name="email" class="form-control" required="" placeholder="Email" onkeyup="myFunction()">
+                                                    </div>
+                                                    <div class="input-group form-group">
+                                                        <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
+                                                        <input type="email" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen" onkeyup="myFunction()">
+
+                                                    </div>
+                                                    <div class="input-group form-group">
+                                                        <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
+                                                        <input type="password" id="passwort" name="passwort" class="form-control" required="" placeholder="Passwort" onkeyup="myFunction()">
+                                                    </div>
+                                                    <div class="input-group form-group">
+                                                        <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
+                                                        <input type="password" id="passwortBestaetigen" name="passwortBestaetigen" class="form-control" required="" placeholder="Passwort wiederholen" onkeyup="myFunction()">
+                                                    </div>
+            
+            <button type="button" class="btn btn-danger">Weiter</button>
+
+
+        
         </div>
-        <div class="videocall">
-            <p class="text">Du wirst mit einem Mitarbeiter verbunden ... </p>
-            <div class="bfl"><div class="loader">Loading...</div></div>
-        </div>
-        <button type="button" class="btn btn-outline-danger button">Bestätigung abschließen</button>
+        
     </body>
-    
-    <script>
-    $('.btn').click(function(){
-        $('.videocall').addClass('videocall-good');
-        $('.videocall').removeClass('videocall')
-    });
-    </script>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="assets/js/jquery-3.2.1.js" type="text/javascript"></script>
