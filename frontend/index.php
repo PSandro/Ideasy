@@ -208,13 +208,13 @@
                                                                             <span class="input-group-addon"><i class="nc-icon nc-single-02"></i></span>
                                                           								<input type="text" id="vorname" name="vorname" class="form-control" required="" placeholder="Vorname">
                                                           							</div>
-                                                                        <div class="input-group form-group">
-                                                                            <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
-                                                          								<input type="text" id="email" name="email" class="form-control" required="" placeholder="E-mail">
+
+                                                                        <div class="form-group">
+                                                          								<input type="email" id="email" name="email" class="form-control" required="" placeholder="Email">
                                                           							</div>
-                                                                        <div class="input-group form-group">
-                                                                            <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
-                                                          								<input type="text" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="E-mail wiederholen">
+                                                                        <div class="form-group">
+                                                          								<input type="email" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen">
+
                                                           							</div>
                                                                         <div class="input-group form-group">
                                                                             <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
@@ -224,12 +224,28 @@
                                                                             <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
                                                           								<input type="text" id="passwortBestaetigen" name="passwortBestaetigen" class="form-control" required="" placeholder="Passwort wiederholen">
                                                           							</div>
-                                                                        <button id="registerbtn" type="submit" class="btn btn-info btn-round">Registrieren</button>
-                                                                            </div>
+
+                                                          							
+                                                          				<div class="alert alert-danger alert-with-icon" data-notify="container">
+														                    <div class="container">
+														                        <div class="alert-wrapper">
+														                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+														                                <i class="nc-icon nc-simple-remove"></i>
+														                            </button>
+														                            <div class="message"><i class="nc-icon nc-bell-55"></i> Bitte achte darauf, dass beide Passwörter übereinstimmen!</div>
+														                        </div>
+														                    </div>
+														                </div>
+                                                          				
+                                                                        <button type="submit" class="btn btn-info btn-round">Register</button>
+                                                                        </form>
+                                                                        </div>
+
+                                                                      
                                                                         </div>
                                                                         </div>
                                                                         </div>
-                                                                      <div class="tab-pane" id="login" role="tabpanel">
+                                                                    	<div class="tab-pane" id="login" role="tabpanel">
                                                                         <h2>Login</h2>
                                                                         <div class="col-md-8 offset-md-2">
                                                                         <hr>
@@ -238,28 +254,30 @@
                                                                         <div class="col-md-12 offset-md-3">
                                                                         <div class="row">
                                                                         <div class="col-sm-6">
-                                                                        <div class="input-group form-group">
-                                                                            <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
-                                                          								<input type="text" class="form-control" placeholder="E-mail">
-                                                          							</div>
-                                                                        <div class="input-group form-group">
-                                                                            <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
 
-                                                          								<input type="text" class="form-control" placeholder="Passwort">
+                                                                        <div class="form-group">
+                                                          								<input type="email" class="form-control" placeholder="Email">
+                                                          							</div>
+                                                                        <div class="form-group">
+                                                          								<input type="password" class="form-control" placeholder="Passwort">
+
                                                           							</div>
                                                                         <button type="button" class="btn btn-info btn-round">Login</button>
                                                                       </div>
                                                                         </div>
                                                                           </div>
                                                                             </div>
+                                                                            
                                                                               </div>
                                                                                 </div>
                                                                                   </div>
                                                                                     </div>
                                                                                       </div>
+
               
               
               <div class="section landing-section">
+
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
