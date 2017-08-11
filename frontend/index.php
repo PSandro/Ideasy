@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="de">
-
 <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="icon--.png">
@@ -52,6 +51,9 @@
         }
         .sendtextbtn {
             margin: 30px auto;
+        }
+        #alert {
+            display: none;
         }
     </style>
 </head>
@@ -210,35 +212,36 @@
 
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
-                                                        <input type="email" id="email" name="email" class="form-control" required="" placeholder="Email">
+                                                        <input type="email" id="email" name="email" class="form-control" required="" placeholder="Email" onkeyup="myFunction()">
                                                     </div>
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
-                                                        <input type="email" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen">
+                                                        <input type="email" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen" onkeyup="myFunction()">
 
                                                     </div>
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
-                                                        <input type="text" id="passwort" name="passwort" class="form-control" required="" placeholder="Passwort">
+                                                        <input type="password" id="passwort" name="passwort" class="form-control" required="" placeholder="Passwort" onkeyup="myFunction()">
                                                     </div>
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
-                                                        <input type="text" id="passwortBestaetigen" name="passwortBestaetigen" class="form-control" required="" placeholder="Passwort wiederholen">
+                                                        <input type="password" id="passwortBestaetigen" name="passwortBestaetigen" class="form-control" required="" placeholder="Passwort wiederholen" onkeyup="myFunction()">
                                                     </div>
 
 
-                                                    <div class="alert alert-danger alert-with-icon" data-notify="container">
+                                                    <div id="alert" class="alert alert-danger alert-with-icon" data-notify="container">
                                                         <div class="container">
                                                             <div class="alert-wrapper">
                                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                                     <i class="nc-icon nc-simple-remove"></i>
                                                                 </button>
                                                                 <div class="message"><i class="nc-icon nc-bell-55"></i> Bitte achte darauf, dass beide Passwörter übereinstimmen!</div>
+                                                                <div class="message"><i class="nc-icon nc-bell-55"></i>Bitte überprüfe, ob beide E-Mail Adressen und Passwörter übereinstimmen.</div>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <button type="submit" class="btn btn-info btn-round">Register</button>
+                                                    <button type="submit" id="btn" class="btn btn-info btn-round">Register</button>
                                                 </form>
                                             </div>
 
@@ -340,29 +343,31 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <script>
-    $(function() {
-        jQuery.fn.extend({
-            disable: function(state) {
-                return this.each(function() {
-                    this.disabled = state;
-                });
-            }
-        });
-    });
-
-
     
     
-    $('#passwortBestaetigen').keyup(function() {
-        var _txt1 = $('#passwort').val();
-        var _txt2 = $('#passwortBestaetigen').val();
-            
-        if (_txt1 == _txt2) {
-            $('#registerbtn').disable(true);
+    
+    function myFunction() {
+        
+        var firstpw = document.getElementById("passwort").value;
+        var secondpw = document.getElementById("passwortBestaetigen").value;
+        var firstmail = document.getElementById('email').value;
+        var secondmail = document.getElementById('emailBestaetigen').value;
+        
+
+    
+    if (firstmail === secondmail) {
+        if (firstpw === secondpw) {
+            document.getElementById("btn").disabled = false; 
+        document.getElementById('alert').style.display = 'none'
         } else {
-             $('#registerbtn').disable(false);
+            document.getElementById("btn").disabled = true; 
+    document.getElementById('alert').style.display = 'block'
         }
-    });
+    } else {
+        document.getElementById("btn").disabled = true; 
+    document.getElementById('alert').style.display = 'block'
+    }}
+    
 </script>
 
 <script src="assets/js/scroll.js" type="text/javascript"></script>
