@@ -235,7 +235,6 @@
                                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                                     <i class="nc-icon nc-simple-remove"></i>
                                                                 </button>
-                                                                <div class="message"><i class="nc-icon nc-bell-55"></i> Bitte achte darauf, dass beide Passwörter übereinstimmen!</div>
                                                                 <div class="message"><i class="nc-icon nc-bell-55"></i>Bitte überprüfe, ob beide E-Mail Adressen und Passwörter übereinstimmen.</div>
                                                             </div>
                                                         </div>
