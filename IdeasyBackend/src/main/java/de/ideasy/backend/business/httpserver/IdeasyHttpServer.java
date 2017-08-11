@@ -1,6 +1,7 @@
 package de.ideasy.backend.business.httpserver;
 
 import com.sun.net.httpserver.HttpServer;
+import de.ideasy.backend.business.httpserver.httphandler.CheckForAuthHandler;
 import de.ideasy.backend.business.httpserver.httphandler.LoginHandler;
 import de.ideasy.backend.business.httpserver.httphandler.VerifyHandler;
 import de.ideasy.backend.business.information.IInformationManager;
@@ -29,6 +30,7 @@ public class IdeasyHttpServer implements IHttpServer {
     private void initHandlers() {
         this.httpServer.createContext("/verify", new VerifyHandler(this.informationManager));
         this.httpServer.createContext("/login", new LoginHandler(this.dataManager));
+        this.httpServer.createContext("/checkForAuth", new CheckForAuthHandler(this.informationManager));
     }
 
     @Override
