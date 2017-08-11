@@ -48,6 +48,14 @@ public abstract class AbstractHttpHandler implements HttpHandler {
 
     }
 
+    public JsonObject buildErrorObject(final String message) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("success", "false");
+        jsonObject.addProperty("message", message);
+        return jsonObject;
+    }
+
+
     public abstract JsonObject handleRequest(Map<String, String> propertyMap, InetSocketAddress inetSocketAddress);
 
     public void respond(final JsonObject response, HttpExchange exchange) throws IOException {

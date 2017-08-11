@@ -3,17 +3,15 @@ package de.ideasy.backend;
 import de.ideasy.backend.business.console.IdeasyConsole;
 import de.ideasy.backend.business.httpserver.IHttpServer;
 import de.ideasy.backend.business.httpserver.IdeasyHttpServer;
+import de.ideasy.backend.business.information.IInformationManager;
+import de.ideasy.backend.business.information.InformationManager;
 import de.ideasy.backend.persistence.DataManager;
 import de.ideasy.backend.persistence.IDataManager;
-import de.ideasy.backend.persistence.User;
-import de.ideasy.backend.persistence.exception.UserNotFoundException;
 import de.ideasy.backend.persistence.mysql.MySQLInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -33,6 +31,7 @@ public final class IdeasyBackendRuntime {
 
     private final IDataManager dataManager;
     private final IHttpServer httpServer;
+    private final IInformationManager informationManager;
     private final Logger logger;
 
     public IdeasyBackendRuntime() throws IOException {
@@ -41,11 +40,12 @@ public final class IdeasyBackendRuntime {
         this.getLogger().info("Initialising...");
         this.dataManager = new DataManager(new MySQLInfo(
                 "psandro.de",
-                "cd",
+                "",
                 "ideasy",
-                "codedesign"
+                ""
                 , 3306));
-        this.httpServer = new IdeasyHttpServer(8000);
+        this.informationManager = new InformationManager(dataManager);
+        this.httpServer = new IdeasyHttpServer(8000, dataManager, informationManager);
         this.getLogger().info("starting console...");
         new IdeasyConsole(new Scanner(System.in), this.dataManager);
         this.getLogger().info("starting websocket...");
