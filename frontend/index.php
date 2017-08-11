@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!doctype html>
 <html lang="de">
 
@@ -80,7 +84,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#loginreg" class="btn btn-info btn-sm btn-round">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                        <a href="#loginreg" class="btn btn-info btn-sm btn-round"><?php if(isset($_SESSION['user_id'])){echo "Mein Konto";}else{echo"Login";} ?><i class="fa fa-sign-in" aria-hidden="true"></i></a>
                     </li>
 
                 </ul>
@@ -171,6 +175,7 @@
             <div class="section section-nucleo-icons">
                 <div class="container">
                     <div class="row">
+                    	<?php if(!isset($_SESSION['user_id'])){ ?>
                         <div class="col-md-8 offset-md-2">
 
                             <div class="nav-tabs-navigation">
@@ -189,7 +194,7 @@
                             <div id="my-tab-content" class="tab-content text-center">
                                 <div class="tab-pane active" id="register" role="tabpanel">
                                     <h2>Account erstellen</h2>
-
+                                
                                     <div class="col-md-8 offset-md-2">
                                         <hr>
                                     </div>
@@ -238,7 +243,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <button type="submit" class="btn btn-info btn-round">Register</button>
+                                                    <button type="submit" class="btn btn-info btn-round <?php if(isset($_SESSION['user_id'])){echo "disabled";} ?>">Register</button>
                                                 </form>
                                             </div>
 
@@ -255,15 +260,18 @@
                                     <div class="col-md-12 offset-md-3">
                                         <div class="row">
                                             <div class="col-sm-6">
-
+											<form class="form-horizontal" action="login.php" method="post">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="Email">
+                                                    <input type="email" id="email" name="email" class="form-control" placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" placeholder="Passwort">
-
+                                                    <input type="password" id="password" name="password" class="form-control" placeholder="Passwort">
                                                 </div>
-                                                <button type="button" class="btn btn-info btn-round">Login</button>
+                                
+												<input type="hidden" name="aktion" value="login">
+                                                <button type="submit" class="btn btn-info btn-round <?php if(isset($_SESSION['user_id'])){echo "disabled";} ?>">Login</button>
+                                               
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
@@ -274,7 +282,7 @@
                     </div>
                 </div>
             </div>
-
+             <?php } ?>
 
 
             <div class="section landing-section">
