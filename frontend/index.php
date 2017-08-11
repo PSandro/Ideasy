@@ -102,10 +102,10 @@
                                                           								<input type="text" id="vorname" name="vorname" class="form-control" required="" placeholder="Vorname">
                                                           							</div>
                                                                         <div class="form-group">
-                                                          								<input type="text" id="email" name="email" class="form-control" required="" placeholder="Email">
+                                                          								<input type="email" id="email" name="email" class="form-control" required="" placeholder="Email">
                                                           							</div>
                                                                         <div class="form-group">
-                                                          								<input type="text" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen">
+                                                          								<input type="email" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen">
                                                           							</div>
                                                                         <div class="form-group">
                                                           								<input type="password" id="passwort" name="passwort" class="form-control" required="" placeholder="Passwort">
@@ -126,11 +126,12 @@
 														                </div>
                                                           				
                                                                         <button type="submit" class="btn btn-info btn-round">Register</button>
+                                                                        </form>
                                                                         </div>
                                                                         </div>
                                                                         </div>
                                                                         </div>
-                                                                      <div class="tab-pane" id="login" role="tabpanel">
+                                                                    	<div class="tab-pane" id="login" role="tabpanel">
                                                                         <h2>Login</h2>
                                                                         <div class="col-md-8 offset-md-2">
                                                                         <hr>
@@ -140,21 +141,23 @@
                                                                         <div class="row">
                                                                         <div class="col-sm-6">
                                                                         <div class="form-group">
-                                                          								<input type="text" class="form-control" placeholder="Email">
+                                                          								<input type="email" class="form-control" placeholder="Email">
                                                           							</div>
                                                                         <div class="form-group">
-                                                          								<input type="text" class="form-control" placeholder="Passwort">
+                                                          								<input type="password" class="form-control" placeholder="Passwort">
                                                           							</div>
                                                                         <button type="button" class="btn btn-info btn-round">Login</button>
                                                                       </div>
                                                                         </div>
                                                                           </div>
                                                                             </div>
+                                                                            
                                                                               </div>
                                                                                 </div>
                                                                                   </div>
                                                                                     </div>
                                                                                       </div>
+                                                                                    	</div>
                                                                                       
                     <div class="section section-dark">  </div>
                     <div class="section section-buttons">
