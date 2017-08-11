@@ -4,6 +4,10 @@ import com.google.common.base.Preconditions;
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
 import de.ideasy.backend.persistence.mysql.MySQLClient;
 import de.ideasy.backend.persistence.mysql.MySQLInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.SQLException;
 
 /**
  * Created by sandro on 10.08.17.
@@ -11,22 +15,26 @@ import de.ideasy.backend.persistence.mysql.MySQLInfo;
 public class DataManager implements IDataManager {
 
     private final MySQLClient mySQLClient;
+    private final Logger logger;
 
     public DataManager(final MySQLInfo mySQLInfo) {
         Preconditions.checkNotNull(mySQLInfo, "The MySQLInfo cannot be null");
+        this.logger = LoggerFactory.getLogger(DataManager.class);
+        this.logger.info("connecting to mysql server...");
         this.mySQLClient = new MySQLClient(mySQLInfo);
+        this.logger.info("connected!");
     }
 
     @Override
-    public User getUserById(int id) throws UserNotFoundException {
-        final User user = this.getUserById(id);
+    public User getUserById(int id) throws UserNotFoundException, SQLException {
+        final User user = this.mySQLClient.getById(id);
         if (user == null) throw new UserNotFoundException(id);
         return user;
     }
 
     @Override
-    public User getUserByEmail(String email) throws UserNotFoundException {
-        final User user = this.getUserByEmail(email);
+    public User getUserByEmail(String email) throws UserNotFoundException, SQLException {
+        final User user = this.mySQLClient.getByEmail(email);
         if (user == null) throw new UserNotFoundException(email);
         return user;
     }
