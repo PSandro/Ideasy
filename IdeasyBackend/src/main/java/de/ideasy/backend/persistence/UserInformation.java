@@ -1,11 +1,12 @@
 package de.ideasy.backend.persistence;
 
+import de.ideasy.backend.business.information.UserAttribut;
+
 /**
  * Created by sandro on 10.08.17.
  */
 
 public final class UserInformation {
-
 
 
     private final int id;
@@ -70,6 +71,30 @@ public final class UserInformation {
 
     public String getAddress() {
         return address;
+    }
+
+    public Object get(UserAttribut userAttribut) {
+        switch (userAttribut) {
+            case BIRTH:
+                return this.getBirth();
+            case ADDRESS:
+                return this.getAddress();
+            case PLACE_OF_BIRTH:
+                return this.getPlaceOfBirth();
+            case NATIONALITY:
+                return this.getNationality();
+            case LAST_NAME:
+                return this.getLastName();
+            case ID_CARD_ID:
+                return this.getIdCardId();
+            case ID_CARD_EXPIRATION:
+                return this.getIdCardExpiration();
+            case EYE_COLOR:
+                return this.getEyeColor();
+            case FIRST_NAME:
+                return this.getFirstName();
+        }
+        throw new IllegalArgumentException("no field found for this UserAttribut");
     }
 
     @Override

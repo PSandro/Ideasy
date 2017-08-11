@@ -39,6 +39,7 @@
     
 	if(!empty($_POST['email']) && !empty($_POST['passwort'])):
 			    	
+			    	//Insert password an email in ideasyUser table.
 					$pwd = password_hash($_POST['passwort'], PASSWORD_BCRYPT);
 				
 				    $sql = "INSERT INTO ideasyUser (email, password) VALUES (:email, :passwort)";
@@ -51,10 +52,33 @@
 					$message = 'Successfully created new user';
 				    else:
 					$message = 'Sorry there must have been an issue creating your account';
+					print_r($stmt->errorInfo());
 			    	endif;
+			    	
+			    	
 			
 			    endif;
 
 	echo $message;
+	
+	if(!empty($_POST['name']) && !empty($_POST['vorname'])):
+			    
+				    $sql = "INSERT INTO ideasyUserData (firstName, lastName) VALUES (:vorname, :name)";
+				    $stmt = $conn->prepare($sql);
+			
+				    $stmt->bindParam(':vorname', $vorname);
+				    $stmt->bindParam(':name', $name);
+			
+				    if( $stmt->execute() ):
+					$message = ' Successfully saved Data';
+				    else:
+					$message = ' Sorry there must have been an issue saving your Data';
+					 print_r($stmt->errorInfo());
+			    	endif;
+			    	
+			    	
+			
+			    endif;
 
+	echo $message;
 ?>

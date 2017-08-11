@@ -1,5 +1,7 @@
 package de.ideasy.backend.persistence;
 
+import de.ideasy.backend.business.information.FormattedAddress;
+import de.ideasy.backend.business.information.HomeAddress;
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
 
 import java.sql.SQLException;
@@ -13,5 +15,7 @@ public interface IDataManager {
     User getUserById(int id) throws UserNotFoundException, SQLException;
 
     User getUserByEmail(final String email) throws UserNotFoundException, SQLException;
+
+    User getUserByAddress(FormattedAddress homeAddress) throws SQLException, UserNotFoundException;
 
 }
