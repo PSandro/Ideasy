@@ -25,9 +25,9 @@ public class HomeAddressSerializer implements JsonSerializer<HomeAddress>, JsonD
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         final int postcode = jsonObject.get("postcode").getAsInt();
         final String streetName = jsonObject.get("streetName").getAsString();
-        final String homeNumber = jsonObject.get("streetName").getAsString();
-        final String addition = jsonObject.get("streetName").getAsString();
-        final String cityName = jsonObject.get("streetName").getAsString();
+        final String homeNumber = jsonObject.get("homeNumber").getAsString();
+        final String addition = jsonObject.get("addition").getAsString();
+        final String cityName = jsonObject.get("cityName").getAsString();
         return new HomeAddress(postcode, streetName, homeNumber, addition, cityName);
     }
 
