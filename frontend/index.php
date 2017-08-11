@@ -245,11 +245,8 @@ session_start();
                                                         </div>
                                                     </div>
 
-<<<<<<< HEAD
                                                     <button type="submit" class="btn btn-info btn-round <?php if(isset($_SESSION['user_id'])){echo "disabled";} ?>">Register</button>
-=======
-                                                    <button type="submit" id="btn" class="btn btn-info btn-round">Register</button>
->>>>>>> 48c5dc0563ab93a5c1d7d15b9fa34d617bfcfc5d
+
                                                 </form>
                                             </div>
 
