@@ -1,6 +1,8 @@
 package de.ideasy.backend.persistence;
 
 import com.google.common.base.Preconditions;
+import de.ideasy.backend.business.information.FormattedAddress;
+import de.ideasy.backend.business.information.HomeAddress;
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
 import de.ideasy.backend.persistence.mysql.MySQLClient;
 import de.ideasy.backend.persistence.mysql.MySQLInfo;
@@ -36,6 +38,13 @@ public class DataManager implements IDataManager {
     public User getUserByEmail(String email) throws UserNotFoundException, SQLException {
         final User user = this.mySQLClient.getByEmail(email);
         if (user == null) throw new UserNotFoundException(email);
+        return user;
+    }
+
+    @Override
+    public User getUserByAddress(FormattedAddress homeAddress) throws SQLException, UserNotFoundException {
+        final User user = this.mySQLClient.getByAddress(homeAddress.format());
+        if (user == null) throw new UserNotFoundException((HomeAddress) homeAddress);
         return user;
     }
 }
