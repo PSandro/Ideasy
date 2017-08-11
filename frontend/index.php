@@ -14,6 +14,7 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+    <script src="assets/js/jquery-3.2.1.js"></script> 
 
     <style>
         h1 {
@@ -107,11 +108,23 @@
                                                           								<input type="text" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen">
                                                           							</div>
                                                                         <div class="form-group">
-                                                          								<input type="text" id="passwort" name="passwort" class="form-control" required="" placeholder="Passwort">
+                                                          								<input type="password" id="passwort" name="passwort" class="form-control" required="" placeholder="Passwort">
                                                           							</div>
                                                                         <div class="form-group">
-                                                          								<input type="text" id="passwortBestaetigen" name="passwortBestaetigen" class="form-control" required="" placeholder="Passwort wiederholen">
+                                                          								<input type="password" id="passwortBestaetigen" name="passwortBestaetigen" class="form-control" required="" placeholder="Passwort wiederholen">
                                                           							</div>
+                                                          							
+                                                          				<div class="alert alert-danger alert-with-icon" data-notify="container">
+														                    <div class="container">
+														                        <div class="alert-wrapper">
+														                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+														                                <i class="nc-icon nc-simple-remove"></i>
+														                            </button>
+														                            <div class="message"><i class="nc-icon nc-bell-55"></i> Bitte achte darauf, dass beide Passwörter übereinstimmen!</div>
+														                        </div>
+														                    </div>
+														                </div>
+                                                          				
                                                                         <button type="submit" class="btn btn-info btn-round">Register</button>
                                                                         </div>
                                                                         </div>
@@ -142,6 +155,7 @@
                                                                                   </div>
                                                                                     </div>
                                                                                       </div>
+                                                                                      
                     <div class="section section-dark">  </div>
                     <div class="section section-buttons">
                         <div class="container">
