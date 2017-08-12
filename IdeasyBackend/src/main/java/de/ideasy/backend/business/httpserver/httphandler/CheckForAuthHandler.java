@@ -30,9 +30,35 @@ public class CheckForAuthHandler extends AbstractHttpHandler {
     public JsonObject handleRequest(Map<String, String> propertyMap, InetSocketAddress inetSocketAddress) {
         CheckForAuthHandler.LOGGER.info("INCOMING REQUEST from " + inetSocketAddress.getHostName() + ": " + propertyMap.toString());
 
-        if (!propertyMap.containsKey("address")) {
+        if (propertyMap.containsKey("address")) {
+            return this.checkAddress(propertyMap);
+        } else if (propertyMap.containsKey("email")) {
+            return this.checkEmail(propertyMap);
+        } else
             return super.buildErrorObject("Missing parameters!");
+
+    }
+
+
+    private JsonObject checkEmail(Map<String, String> propertyMap) {
+        final String email = propertyMap.get("email");
+        final JsonObject response = new JsonObject();
+        try {
+            if (this.informationManager.checkEmail(email)) {
+                response.addProperty("success", "true");
+                response.addProperty("message", "email address exists in database an needs an authentication!");
+            } else {
+                return super.buildErrorObject("User does not exist in database");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return super.buildErrorObject("mysql error");
         }
+
+        return response;
+    }
+
+    private JsonObject checkAddress(Map<String, String> propertyMap) {
         final String rawAddress = propertyMap.get("address");
         final HomeAddress homeAddress;
         try {
@@ -44,9 +70,9 @@ public class CheckForAuthHandler extends AbstractHttpHandler {
         try {
             if (this.informationManager.checkAddress(homeAddress)) {
                 response.addProperty("success", "true");
-                response.addProperty("message", "email address exists in database an needs an authentication!");
+                response.addProperty("message", "address exists in database an needs an authentication!");
             } else {
-                return super.buildErrorObject("User does not exist in database");
+                return super.buildErrorObject("address does not exist in database");
             }
         } catch (SQLException e) {
             e.printStackTrace();
