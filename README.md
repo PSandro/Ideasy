@@ -71,6 +71,9 @@ keys for POST request:
 | `address` | json-formatted address |
 | `email` | email address |
 
+the address needs following json-format:
+`{"postcode":00000,"streetName":"aaa","homeNumber":"1a","addition":"","cityName":"aaa"}`
+
 ### Todos
 
  - Write MORE Tests
