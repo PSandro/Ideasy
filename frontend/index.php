@@ -167,7 +167,7 @@ session_start();
                 <div class="row">
                     <div class="col-md-8 offset-md-2 text-center">
                         <h2 class="title">Wie kann ich einen Account erstellen?</h2>
-                        <p class="description">Wenn Du von den Vorteilen eines kostenlosen IDEasy Accounts profitieren willst, fülle die nachfolgenden Felder aus. Vorerst benötigen wir nur Deinen Namen, Deine E-Mail Adresse und ein Passwort. Danach wirst Du zur Bestätigung Deines Accounts auf eine Seite weitergeleitet, wo Du mit einem Mitarbeiter ein Video Telefonat zur Bestätigung deiner Identität durchführst. Bitte halte Deinen Personalausweis bereit und nutze einen Computer mit WebCam, alternativ kannst Du auch unsere iOS oder Android App benutzen. Nach dem Video Telefonat ist Dein Account bestätigt und kann benutzt werden.</p>
+                        <p class="description">Wenn Du von den Vorteilen eines kostenlosen IDEasy Accounts profitieren willst, fülle die nachfolgenden Felder aus. Vorerst benötigen wir nur Deinen Namen, Deine E-Mail Adresse und ein Passwort. Danach wirst Du zur Bestätigung Deines Accounts auf eine Seite weitergeleitet, wo Du mit einem Mitarbeiter ein Video Telefonat zur Bestätigung deiner Identität durchführst. Bitte halte Deinen Personalausweis bereit und nutze einen Computer mit WebCam. Nach dem Video Telefonat ist Dein Account bestätigt und kann zur Bestätigung verwendet werden.</p>
                     </div>
                 </div>
             </div>
