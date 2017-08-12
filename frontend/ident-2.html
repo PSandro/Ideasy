@@ -21,11 +21,17 @@
             }
         .imgadd {
             background: url(schnecke123.png) !important;
+            background-repeat: no-repeat;
+            display: block !important;
         }
         
         .header {
                 margin-left: 60px !important;
                 margin-top: 20px !important;
+        }
+        
+        .ttext {
+            margin-left: 60px;
         }
         
         .text {
@@ -49,7 +55,7 @@
         .videocall {
             width: 900px;
             height: 500px;
-            background: black;
+            background: white;
             background-repeat: no-repeat;
             margin-left: auto;
             margin-right: auto;
@@ -69,6 +75,10 @@
         
         .button {
             margin: 90px auto;
+        }
+        
+        #lala {
+            text-decoration: underline;
         }
         
         .loader,
@@ -130,34 +140,43 @@
 }
 
     </style>
-</head>
-    <body>
-        <div class="header">
-            <h1>Hallo Susi Klein,</h1>
-        <h3>Nur noch ein Schritt bis Dein Account bestätigt ist.</h3>
-        </div>
-        <div class="videocall camera">
-            <p class="text">Du wirst mit einem Mitarbeiter verbunden ... </p>
-            <div class="bfl"><div class="loader">Loading...</div></div>
-        </div>
-        <button type="button" class="btn btn-outline-danger button">Bestätigung abschließen</button>
-    </body>
-    
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script src="assets/js/jquery-3.2.1.js" type="text/javascript"></script>
     
     <script>
     $(document).ready(function() {
-         setTimeout(function() {
+         
+    });
+        
+        function myfuncc() {
+            $('.videocall').css('background', 'black');
+            setTimeout(function() {
         $(".videocall").addClass("imgadd");
+                $('#lala').css('display', 'none');
              $(".bfl").css('display', 'none');
              $(".text").css('display', 'none');
     },5000);
-    });
+        }
         
      
         
     </script>
+</head>
+    <body>
+        <div class="header">
+            <h1>Hallo Susi Klein,</h1>
+            <h3>Nur noch ein Schritt bis Dein Account bestätigt ist.</h3><br/><br/>
+            <p>Zur Bestätigung Deiner Identität kannst Du ein Video Telefonat mit einem Mitarbeiter durchführen. Das dient zu Deiner eigenen Sicherheit und dauert nur 5 Minuten. Dein Account ist sofort bereit. Du brauchst nur einen Computer mit einer Webcam. Halte bitte Deinen Personalausweis bereit. ALternativ steht auch der PostIdent Service der Deutschen Post zur Verfügung. Klicke dafür bitte <a href="">hier</a>.</p><br/><br/><br/><a id="lala" href="#lol" onclick="myfuncc()">Videotelefonat starten</a>
+        
+        </div>
+        <div id="lol" class="videocall camera">
+            <p class="text">Du wirst mit einem Mitarbeiter verbunden ... </p>
+            <div class="bfl"><div class="loader">Loading...</div></div>
+        </div>
+        
+    </body>
+    
+    
     
     
     <script src="assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
