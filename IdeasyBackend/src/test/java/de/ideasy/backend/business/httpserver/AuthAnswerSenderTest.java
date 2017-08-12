@@ -15,20 +15,18 @@ public class AuthAnswerSenderTest {
 
 
     @Test
-    public void buildURL() throws Exception {
-        final AuthAnswerSender answerSender = new AuthAnswerSender("http://example.com/test");
+    public void buildURLParams() throws Exception {
+        final AuthAnswerSender answerSender = new AuthAnswerSender(new URL("http://example.com/test"));
         final Map<String, String> properties = new HashMap<>();
         properties.put("name", "Sandro");
         properties.put("hello", "world");
         properties.put("foo", "bar");
 
-        URL url = answerSender.buildURL(properties);
+        String params = answerSender.buildURLParams(properties);
 
-        String rawUrl = url.getQuery();
+        String originalUrl = "&foo=bar&name=Sandro&hello=world";
 
-        String originalUrl = "foo=bar&name=Sandro&hello=world";
-
-        assertEquals(originalUrl, rawUrl);
+        assertEquals(originalUrl, params);
 
     }
 

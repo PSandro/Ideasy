@@ -16,7 +16,7 @@ With *Ideasy* you can for example check if the information in your database is s
 There is a Java backend which has a Http websocket open as API to receive third party requests and answer to them. The Frondend and registration-backend is written in jQuery, PHP, HTML and JavaScript
 
 #### How it works
-1. third party announces the user with sending a GET request to the server in order to get a sessionId which is valid for 10 minutes.
+1. third party announces the user with sending a POST request to the server in order to get a sessionId which is valid for 10 minutes.
 2. third party redirects the user to Ideasy's login Page with the help of the sessionId.
 3. the user will now logic on this page and will proof his identity in several ways like 2-way-authentication...
 4. the user will accept which informations Ideasy wants to send back to the third party service and will either accept or reject it.
@@ -29,7 +29,10 @@ The API offeres several variables with different functions:
 ( ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) are necesarry, others are optional )
 
 ##### player announce:
-`ideasydomain/verify?skey=65465416541654&link=example.com&priority=5`
+
+URL `ideasydomain/verify`
+
+keys for POST request:
 
 | Key  | Usage |
 | --- | --- |
@@ -48,7 +51,9 @@ The API offeres several variables with different functions:
 | `idCardExpiration` | third party's information which should get proofed |
 
 ##### player login (backend)
-`ideasydomain/login?password=6546541HASHED6541654&id=dfas65f4&email=as454fs@saf`
+URL `ideasydomain/login`
+
+keys for POST request:
 
 | Key  | Usage |
 | --- | --- |
@@ -57,11 +62,17 @@ The API offeres several variables with different functions:
 | ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`email` | users email-address |
 
 ##### address auth check
-`ideasydomain/checkForAuth?address={ojdsfijasf:jnfas}`
+URL `ideasydomain/checkForAuth`
+
+keys for POST request:
 
 | Key  | Usage |
 | --- | --- |
-| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`address` | json-formatted address |
+| `address` | json-formatted address |
+| `email` | email address |
+
+the address needs following json-format:
+`{"postcode":00000,"streetName":"aaa","homeNumber":"1a","addition":"","cityName":"aaa"}`
 
 ### Todos
 

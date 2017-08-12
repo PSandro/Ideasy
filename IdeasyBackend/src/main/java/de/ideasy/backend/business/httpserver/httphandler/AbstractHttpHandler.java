@@ -6,7 +6,9 @@ import com.sun.net.httpserver.HttpHandler;
 import de.ideasy.backend.business.IdGenerator;
 import de.ideasy.backend.business.httpserver.QueryUtil;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.Map;
@@ -24,7 +26,9 @@ public abstract class AbstractHttpHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        final String query = exchange.getRequestURI().getQuery();
+        InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), "utf-8");
+        BufferedReader br = new BufferedReader(isr);
+        String query = br.readLine();
         final InetSocketAddress address = exchange.getRemoteAddress();
         final JsonObject response = new JsonObject();
         if (query == null) {
@@ -32,7 +36,7 @@ public abstract class AbstractHttpHandler implements HttpHandler {
             response.addProperty("message", "no parameters given");
             this.respond(response, exchange);
         }
-        final Map<String, String> propertyMap = QueryUtil.queryToMap(query);
+        final Map<String, String> propertyMap = QueryUtil.parseQuery(query);
 
         final JsonObject handlingResponse = this.handleRequest(propertyMap, address);
 
