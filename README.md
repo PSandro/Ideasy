@@ -29,7 +29,10 @@ The API offeres several variables with different functions:
 ( ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) are necesarry, others are optional )
 
 ##### player announce:
-`ideasydomain/verify?skey=65465416541654&link=example.com&priority=5`
+
+URL `ideasydomain/verify`
+
+keys for POST request:
 
 | Key  | Usage |
 | --- | --- |
@@ -48,7 +51,9 @@ The API offeres several variables with different functions:
 | `idCardExpiration` | third party's information which should get proofed |
 
 ##### player login (backend)
-`ideasydomain/login?password=6546541HASHED6541654&id=dfas65f4&email=as454fs@saf`
+URL `ideasydomain/login`
+
+keys for POST request:
 
 | Key  | Usage |
 | --- | --- |
@@ -57,11 +62,14 @@ The API offeres several variables with different functions:
 | ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`email` | users email-address |
 
 ##### address auth check
-`ideasydomain/checkForAuth?address={ojdsfijasf:jnfas}`
+URL `ideasydomain/checkForAuth`
+
+keys for POST request:
 
 | Key  | Usage |
 | --- | --- |
-| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`address` | json-formatted address |
+| `address` | json-formatted address |
+| `email` | email address |
 
 ### Todos
 
