@@ -35,7 +35,7 @@ public enum UserAttribut {
 
     public static UserAttribut fetchByFieldName(final String fieldName) {
         for (UserAttribut userAttribut : UserAttribut.values()) {
-            if (fieldName.equalsIgnoreCase(userAttribut.getFieldName()))
+            if (fieldName.equals(userAttribut.getFieldName()))
                 return userAttribut;
         }
         return null;
