@@ -40,14 +40,14 @@ public final class IdeasyBackendRuntime {
         this.getLogger().info("Initialising...");
         this.dataManager = new DataManager(new MySQLInfo(
                 "psandro.de",
-                "",
+                "cd",
                 "ideasy",
-                ""
+                "codedesign"
                 , 3306));
         this.informationManager = new InformationManager(dataManager);
         this.httpServer = new IdeasyHttpServer(8000, dataManager, informationManager);
         this.getLogger().info("starting console...");
-        new IdeasyConsole(new Scanner(System.in), this.dataManager);
+        new IdeasyConsole(new Scanner(System.in), this.dataManager, this.httpServer);
         this.getLogger().info("starting websocket...");
         this.httpServer.start();
         this.getLogger().info("initialisation finished! write ’help’ to see available commands");

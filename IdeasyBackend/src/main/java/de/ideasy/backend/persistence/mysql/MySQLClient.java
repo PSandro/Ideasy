@@ -6,6 +6,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import de.ideasy.backend.business.customer.SecurityCustomer;
 import de.ideasy.backend.business.information.FormattedAddress;
 import de.ideasy.backend.business.information.HomeAddress;
+import de.ideasy.backend.persistence.AuthLog;
 import de.ideasy.backend.persistence.User;
 import de.ideasy.backend.persistence.UserInformation;
 
@@ -163,6 +164,22 @@ public class MySQLClient {
                     address, idCardExpiration);
 
             return new User(id, email, password, userInformation);
+        }
+    }
+
+    public void saveAuthLog(AuthLog authLog) throws SQLException {
+        Preconditions.checkNotNull(authLog, "The authLog cannot be null!");
+        try (Connection connection = this.hikariDataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `ideasyAuthenticationLog`" +
+                     "(`userId`, `customerId`, `timeStamp`, `authWay`, `priority`, `addition`, `status`) VALUES (?,?,?,?,?,?,?)")) {
+            preparedStatement.setInt(1, authLog.getUserId());
+            preparedStatement.setInt(2, authLog.getCustomerId());
+            preparedStatement.setLong(3, authLog.getTimeStamp());
+            preparedStatement.setString(4, authLog.getAuthWays());
+            preparedStatement.setInt(5, authLog.getPriority());
+            preparedStatement.setString(6, authLog.getAddition());
+            preparedStatement.setString(7, authLog.getStatus().toString());
+            preparedStatement.executeUpdate();
         }
     }
 }

@@ -1,8 +1,13 @@
 package de.ideasy.backend.business.httpserver.httphandler;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import de.ideasy.backend.business.httpserver.HashCompareUtil;
 import de.ideasy.backend.business.information.ThirdPartyInformation;
 import de.ideasy.backend.business.login.SessionIdMap;
+import de.ideasy.backend.persistence.AuthLog;
+import de.ideasy.backend.persistence.AuthStatus;
 import de.ideasy.backend.persistence.IDataManager;
 import de.ideasy.backend.persistence.User;
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
@@ -55,16 +60,33 @@ public class LoginHandler extends AbstractHttpHandler {
             return super.buildErrorObject("error with mysql connection!");
         }
 
+        final JsonArray authWays = new JsonArray();
+        authWays.add(new JsonPrimitive("password"));
+        final String authWay = authWays.toString();
         /* AUTHENTICATION */
-        if (!hashedPassword.equals(user.getPassword())) {
+
+        if (!HashCompareUtil.checkPassword(hashedPassword, user.getPassword())) {
+            //if (!hashedPassword.equals(user.getPassword())) {
             //TODO add more authentication thingies bla bla
+            final AuthLog authFailLog = new AuthLog(user.getId(), thirdPartyInformation.getSecurityCustomer().getId(), System.currentTimeMillis(), authWay, thirdPartyInformation.getPriority(), "", AuthStatus.FAIL);
+            try {
+                this.dataManager.saveAuthLog(authFailLog);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             return super.buildErrorObject("wrong password!");
         }
-
-        //TODO priority
+        final AuthLog authLog = new AuthLog(user.getId(), -1, System.currentTimeMillis(), authWay, thirdPartyInformation.getPriority(), "", AuthStatus.SUCCESS);
+        try {
+            this.dataManager.saveAuthLog(authLog);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //TODO priority check
 
         SessionIdMap.remove(sessionId);
         JsonObject response = new JsonObject();
+
 
         response.addProperty("success", "true");
         response.addProperty("link", thirdPartyInformation.getRedirectLink());
@@ -74,4 +96,5 @@ public class LoginHandler extends AbstractHttpHandler {
 
         return response;
     }
+
 }
