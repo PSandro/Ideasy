@@ -25,14 +25,17 @@ There is a Java backend which has a Http websocket open as API to receive third 
 
 #### HTTP API
 The API offeres several variables with different functions:
+
+( ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) are necesarry, others are optional )
+
 ##### player announce:
 `ideasydomain/verify?skey=65465416541654&link=example.com&priority=5`
 
 | Key  | Usage |
 | --- | --- |
-| `skey` | security key of a company that is registered at Ideasy |
-| `link` | redirect link |
-| `priority` | priority of the authentification | 
+| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`skey` | security key of a company that is registered at Ideasy |
+| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`link` | redirect link |
+| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`priority` | priority of the authentification | 
 | --- | --- |
 | `firstName` | third party's information which should get proofed |
 | `lastName` | third party's information which should get proofed |
@@ -49,16 +52,16 @@ The API offeres several variables with different functions:
 
 | Key  | Usage |
 | --- | --- |
-| `password` | hashed password |
-| `id` | sessionId |
-| `email` | users email-address |
+| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`password` | hashed password |
+| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`id` | sessionId |
+| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`email` | users email-address |
 
 ##### address auth check
 `ideasydomain/checkForAuth?address={ojdsfijasf:jnfas}`
 
 | Key  | Usage |
 | --- | --- |
-| `address` | json-formatted address |
+| ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)`address` | json-formatted address |
 
 ### Todos
 
