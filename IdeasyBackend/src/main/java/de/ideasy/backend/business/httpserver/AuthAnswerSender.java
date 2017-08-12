@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -21,41 +22,42 @@ public final class AuthAnswerSender {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final Logger LOGGER = LoggerFactory.getLogger("AuthAnswerSender");
 
-    private final String urlBase;
+    private final URL urlBase;
 
-    public AuthAnswerSender(final String urlBase) {
+    public AuthAnswerSender(final URL urlBase) {
         Preconditions.checkNotNull(urlBase, "The urlBase cannot be null");
         this.urlBase = urlBase;
     }
 
-    public URL buildURL(Map<String, String> fields) throws MalformedURLException {
+    public String buildURLParams(Map<String, String> fields) throws MalformedURLException {
 
-        String[] url = {this.urlBase};
-        int[] order = {1};
+        String[] url = {""};
         fields.forEach((field, value) -> {
-
-            boolean first = order[0] == 1;
-            String operator = first ? "?" : "&";
-            if (first) {
-                order[0] = 0;
-            }
-
-            url[0] += operator + field + "=" + value;
-
+            url[0] += "&" + field + "=" + value;
         });
 
-        return new URL(url[0]);
+        return url[0];
     }
 
-    private String sendRequest(final URL url) throws IOException {
+    private String sendRequest(final URL url, final String urlParameters) throws IOException {
         final HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", AuthAnswerSender.USER_AGENT);
-
-        int responseCode = con.getResponseCode();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
         AuthAnswerSender.LOGGER.info("OUTGOING REQUEST to " + url.getHost() + ": " + url.getQuery().toString());
+
+        con.setDoOutput(true);
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        wr.writeBytes(urlParameters);
+        wr.flush();
+        wr.close();
+
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'POST' request to URL : " + url);
+        System.out.println("Post parameters : " + urlParameters);
+        System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
@@ -71,7 +73,7 @@ public final class AuthAnswerSender {
     }
 
     public String sendGETRequest(Map<String, String> properties) throws IOException {
-        return this.sendRequest(this.buildURL(properties));
+        return this.sendRequest(this.urlBase, this.buildURLParams(properties));
     }
 
 

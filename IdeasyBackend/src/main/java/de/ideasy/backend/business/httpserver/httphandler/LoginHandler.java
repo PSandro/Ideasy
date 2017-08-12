@@ -93,7 +93,7 @@ public class LoginHandler extends AbstractHttpHandler {
         response.addProperty("customer", thirdPartyInformation.getSecurityCustomer().getCompanyName());
         response.addProperty("message", "Access granted!");
 
-
+        //TODO send information back to third party
         return response;
     }
 
