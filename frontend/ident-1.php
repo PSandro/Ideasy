@@ -38,63 +38,81 @@ $firstName = $results['firstName'];
     <link href="assets/css/nucleo-icons.css" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/css/ident.css">
     <style>
-        body {
-            margin-left: 40px;
-
+        h2 {
+            color: white !important;
+        }
+        .rowwe {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            width:auto;
+            min-width: 400px;
         }
     </style>
 </head>
 <body>
-
-<h2>Bitte ergänze Deine Daten</h2><br/>
-<div class="col-md-3">
-    <h3><?php echo $firstName;
-        echo $lastName; ?></h3><br/>
-    <div class="input-group form-group">
-        <span class="input-group-addon"><i class="nc-icon nc-calendar-60"></i></span>
-        <input type="date" id="birth" name="birth" class="form-control" required="" placeholder="Geburtsdatum">
+<div class="section section-dark darktranss">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h2>Deine digitale Identität ist jetzt schon ein Stück sicherer</h2><br/>
+                <p class="description">Bitte ergänze noch die folgenden Daten. Diese werden gleich durch einen Mitarbeiter im Videochat verifizert.</p></div>
+        </div>
     </div>
-
-    <div class="input-group form-group">
-        <span class="input-group-addon"><i class="nc-icon nc-pin-3"></i></span>
-        <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control" required=""
-               placeholder="Geburtsort">
-
-    </div>
-
-    <div class="input-group form-group">
-        <span class="input-group-addon"><i class="nc-icon nc-shop"></i></span>
-        <input type="text" id="address" name="address" class="form-control" required="" placeholder="Adresse">
-    </div>
-
-    <div class="input-group form-group">
-        <span class="input-group-addon"><i class="nc-icon nc-globe-2"></i></span>
-        <input type="text" id="nationality" name="nationality" class="form-control" required=""
-               placeholder="Staatsangehörigkeit">
-    </div>
-
-    <div class="input-group form-group">
-        <span class="input-group-addon"><i class="nc-icon nc-badge"></i></span>
-        <input type="number" id="idCardId" name="idCardId" class="form-control" required=""
-               placeholder="Ausweis Nummer">
-    </div>
-
-    <div class="input-group form-group">
-        <span class="input-group-addon"><i class="nc-icon nc-circle-10"></i></span>
-        <input type="text" id="eyeColor" name="eyeColor" class="form-control" required=""
-               placeholder="Augenfarbe">
-    </div>
-
-    <div class="input-group form-group">
-        <span class="input-group-addon"><i class="nc-icon nc-calendar-60"></i></span>
-        <input type="date" id="idCardExpiration" name="idCardExpiration" class="form-control" required=""
-               placeholder="Gültigkeitsende Ausweis">
-    </div>
-
-    <button type="button" class="btn btn-danger">Weiter</button>
-
-
 </div>
+<div class="row">
+    <div class="rowwe"><br/>
+            <h3><?php echo $firstName;
+                echo $lastName; ?></h3><br/>
+            <div class="input-group form-group">
+                <span class="input-group-addon"><i class="nc-icon nc-calendar-60"></i></span>
+                <input type="date" id="birth" name="birth" class="form-control" required="" placeholder="Geburtsdatum">
+            </div>
+
+            <div class="input-group form-group">
+                <span class="input-group-addon"><i class="nc-icon nc-pin-3"></i></span>
+                <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control" required=""
+                       placeholder="Geburtsort">
+
+            </div>
+
+            <div class="input-group form-group">
+                <span class="input-group-addon"><i class="nc-icon nc-shop"></i></span>
+                <input type="text" id="address" name="address" class="form-control" required="" placeholder="Adresse">
+            </div>
+
+            <div class="input-group form-group">
+                <span class="input-group-addon"><i class="nc-icon nc-globe-2"></i></span>
+                <input type="text" id="nationality" name="nationality" class="form-control" required=""
+                       placeholder="Staatsangehörigkeit">
+            </div>
+
+            <div class="input-group form-group">
+                <span class="input-group-addon"><i class="nc-icon nc-badge"></i></span>
+                <input type="number" id="idCardId" name="idCardId" class="form-control" required=""
+                       placeholder="Ausweis Nummer">
+            </div>
+
+            <div class="input-group form-group">
+                <span class="input-group-addon"><i class="nc-icon nc-circle-10"></i></span>
+                <input type="text" id="eyeColor" name="eyeColor" class="form-control" required=""
+                       placeholder="Augenfarbe">
+            </div>
+
+            <div class="input-group form-group">
+                <span class="input-group-addon"><i class="nc-icon nc-calendar-60"></i></span>
+                <input type="date" id="idCardExpiration" name="idCardExpiration" class="form-control" required=""
+                       placeholder="Gültigkeitsende Ausweis">
+            </div>
+
+            <button type="button" class="btn btn-danger">Weiter</button>
+
+
+    </div>
+</div>
+
+
+
 
 </body>
 
