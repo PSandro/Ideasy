@@ -16,7 +16,7 @@ With *Ideasy* you can for example check if the information in your database is s
 There is a Java backend which has a Http websocket open as API to receive third party requests and answer to them. The Frondend and registration-backend is written in jQuery, PHP, HTML and JavaScript
 
 #### How it works
-1. third party announces the user with sending a GET request to the server in order to get a sessionId which is valid for 10 minutes.
+1. third party announces the user with sending a POST request to the server in order to get a sessionId which is valid for 10 minutes.
 2. third party redirects the user to Ideasy's login Page with the help of the sessionId.
 3. the user will now logic on this page and will proof his identity in several ways like 2-way-authentication...
 4. the user will accept which informations Ideasy wants to send back to the third party service and will either accept or reject it.
