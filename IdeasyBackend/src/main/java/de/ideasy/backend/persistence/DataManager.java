@@ -57,4 +57,10 @@ public class DataManager implements IDataManager {
         if (securityCustomer == null) throw new CustomerNotFoundException(key);
         return securityCustomer;
     }
+
+    @Override
+    public void saveAuthLog(AuthLog authLog) throws SQLException {
+        Preconditions.checkNotNull(authLog, "The authLog cannot be null!");
+        this.mySQLClient.saveAuthLog(authLog);
+    }
 }

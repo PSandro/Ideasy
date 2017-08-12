@@ -22,4 +22,6 @@ public interface IDataManager {
 
     SecurityCustomer getSecurityCustomer(String key) throws SQLException, CustomerNotFoundException;
 
+    void saveAuthLog(AuthLog authLog) throws SQLException;
+
 }
