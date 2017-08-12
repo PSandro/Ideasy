@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import de.ideasy.backend.business.httpserver.HashCompareUtil;
 import de.ideasy.backend.business.information.ThirdPartyInformation;
+import de.ideasy.backend.business.information.UserAttribut;
 import de.ideasy.backend.business.login.SessionIdMap;
 import de.ideasy.backend.persistence.AuthLog;
 import de.ideasy.backend.persistence.AuthStatus;
@@ -66,7 +67,6 @@ public class LoginHandler extends AbstractHttpHandler {
         /* AUTHENTICATION */
 
         if (!HashCompareUtil.checkPassword(hashedPassword, user.getPassword())) {
-            //if (!hashedPassword.equals(user.getPassword())) {
             //TODO add more authentication thingies bla bla
             final AuthLog authFailLog = new AuthLog(user.getId(), thirdPartyInformation.getSecurityCustomer().getId(), System.currentTimeMillis(), authWay, thirdPartyInformation.getPriority(), "", AuthStatus.FAIL);
             try {
@@ -76,7 +76,7 @@ public class LoginHandler extends AbstractHttpHandler {
             }
             return super.buildErrorObject("wrong password!");
         }
-        final AuthLog authLog = new AuthLog(user.getId(), -1, System.currentTimeMillis(), authWay, thirdPartyInformation.getPriority(), "", AuthStatus.SUCCESS);
+        final AuthLog authLog = new AuthLog(user.getId(), thirdPartyInformation.getSecurityCustomer().getId(), System.currentTimeMillis(), authWay, thirdPartyInformation.getPriority(), "", AuthStatus.SUCCESS);
         try {
             this.dataManager.saveAuthLog(authLog);
         } catch (SQLException e) {
@@ -84,15 +84,28 @@ public class LoginHandler extends AbstractHttpHandler {
         }
         //TODO priority check
 
+        //checking userattributs
+        final JsonArray wrongInformationFields = new JsonArray();
+
+        thirdPartyInformation.getProperties().forEach(((userAttribut, value) -> {
+            if (!String.valueOf(user.getUserInformation().get(userAttribut)).equals(value)) {
+                wrongInformationFields.add(new JsonPrimitive(userAttribut.getFieldName()));
+            }
+        }));
+
         SessionIdMap.remove(sessionId);
         JsonObject response = new JsonObject();
-
 
         response.addProperty("success", "true");
         response.addProperty("link", thirdPartyInformation.getRedirectLink());
         response.addProperty("customer", thirdPartyInformation.getSecurityCustomer().getCompanyName());
         response.addProperty("message", "Access granted!");
+        response.addProperty("wrongInformation", wrongInformationFields.toString());
 
+        //TODO send information back to third party
+        JsonObject thirdPartyResponse = new JsonObject();
+        response.addProperty("success", "true");
+        response.addProperty("wrongInformation", wrongInformationFields.toString());
 
         return response;
     }
