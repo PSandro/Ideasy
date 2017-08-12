@@ -1,8 +1,10 @@
 package de.ideasy.backend.persistence;
 
 import com.google.common.base.Preconditions;
+import de.ideasy.backend.business.customer.SecurityCustomer;
 import de.ideasy.backend.business.information.FormattedAddress;
 import de.ideasy.backend.business.information.HomeAddress;
+import de.ideasy.backend.persistence.exception.CustomerNotFoundException;
 import de.ideasy.backend.persistence.exception.UserNotFoundException;
 import de.ideasy.backend.persistence.mysql.MySQLClient;
 import de.ideasy.backend.persistence.mysql.MySQLInfo;
@@ -46,5 +48,19 @@ public class DataManager implements IDataManager {
         final User user = this.mySQLClient.getByAddress(homeAddress.format());
         if (user == null) throw new UserNotFoundException((HomeAddress) homeAddress);
         return user;
+    }
+
+    @Override
+    public SecurityCustomer getSecurityCustomer(String key) throws SQLException, CustomerNotFoundException {
+        Preconditions.checkNotNull(key, "The key cannt be null!");
+        final SecurityCustomer securityCustomer = this.mySQLClient.getCustomerByKey(key);
+        if (securityCustomer == null) throw new CustomerNotFoundException(key);
+        return securityCustomer;
+    }
+
+    @Override
+    public void saveAuthLog(AuthLog authLog) throws SQLException {
+        Preconditions.checkNotNull(authLog, "The authLog cannot be null!");
+        this.mySQLClient.saveAuthLog(authLog);
     }
 }

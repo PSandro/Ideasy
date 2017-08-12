@@ -1,16 +1,17 @@
 package de.ideasy.backend;
 
 import de.ideasy.backend.business.console.IdeasyConsole;
+import de.ideasy.backend.business.httpserver.IHttpServer;
+import de.ideasy.backend.business.httpserver.IdeasyHttpServer;
+import de.ideasy.backend.business.information.IInformationManager;
+import de.ideasy.backend.business.information.InformationManager;
 import de.ideasy.backend.persistence.DataManager;
 import de.ideasy.backend.persistence.IDataManager;
-import de.ideasy.backend.persistence.User;
-import de.ideasy.backend.persistence.exception.UserNotFoundException;
 import de.ideasy.backend.persistence.mysql.MySQLInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 
-import java.sql.SQLException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -29,25 +30,35 @@ public final class IdeasyBackendRuntime {
             "                                                      ";
 
     private final IDataManager dataManager;
+    private final IHttpServer httpServer;
+    private final IInformationManager informationManager;
     private final Logger logger;
 
-    public IdeasyBackendRuntime() {
+    public IdeasyBackendRuntime() throws IOException {
         this.logger = LoggerFactory.getLogger(IdeasyBackendRuntime.class);
         this.logger.info(LOGO);
         this.getLogger().info("Initialising...");
         this.dataManager = new DataManager(new MySQLInfo(
                 "psandro.de",
-                "",
+                "cd",
                 "ideasy",
-                ""
+                "codedesign"
                 , 3306));
+        this.informationManager = new InformationManager(dataManager);
+        this.httpServer = new IdeasyHttpServer(8000, dataManager, informationManager);
         this.getLogger().info("starting console...");
-        new IdeasyConsole(new Scanner(System.in), this.dataManager);
+        new IdeasyConsole(new Scanner(System.in), this.dataManager, this.httpServer);
+        this.getLogger().info("starting websocket...");
+        this.httpServer.start();
         this.getLogger().info("initialisation finished! write ’help’ to see available commands");
     }
 
     public static void main(String[] args) {
-        new IdeasyBackendRuntime();
+        try {
+            new IdeasyBackendRuntime();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Logger getLogger() {

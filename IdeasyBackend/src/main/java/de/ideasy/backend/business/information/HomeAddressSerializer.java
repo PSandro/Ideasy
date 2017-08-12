@@ -23,6 +23,13 @@ public class HomeAddressSerializer implements JsonSerializer<HomeAddress>, JsonD
     @Override
     public HomeAddress deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
+        if (!jsonObject.has("postcode")
+                || !jsonObject.has("streetName")
+                || !jsonObject.has("homeNumber")
+                || !jsonObject.has("addition")
+                || !jsonObject.has("cityName")) {
+            throw new JsonParseException("Missing fields");
+        }
         final int postcode = jsonObject.get("postcode").getAsInt();
         final String streetName = jsonObject.get("streetName").getAsString();
         final String homeNumber = jsonObject.get("homeNumber").getAsString();

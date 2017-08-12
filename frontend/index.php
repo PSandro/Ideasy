@@ -1,6 +1,9 @@
+<?php
+session_start();
+
+?>
 <!doctype html>
 <html lang="de">
-
 <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="icon--.png">
@@ -53,6 +56,9 @@
         .sendtextbtn {
             margin: 30px auto;
         }
+        #alert {
+            display: none;
+        }
     </style>
 </head>
 
@@ -68,19 +74,23 @@
                 <a class="navbar-brand" href="index.html"><img id="logo" src="ideasy-logo-white.png" width="200" height="40" alt="Ideasy">
                 </a>
             </div>
+            
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
+                	<?php if(!isset($_SESSION['user_id'])){ ?>
                     <li class="nav-item">
-
                         <a href="#about" class="nav-link"><i class="nc-icon"></i>Was ist IDEasy</a>
                     </li>
                     <li class="nav-item">
                         <a href="#loginreg" class="nav-link"><i class="nc-icon"></i>Registrieren</a>
-
                     </li>
-
+                    <?php }else{ ?>
                     <li class="nav-item">
-                        <a href="#loginreg" class="btn btn-info btn-sm btn-round">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                        <a href="logout.php" class="nav-link"><i class="nc-icon"></i>Logout</a>
+                    </li>
+                    <?php } ?>
+                    <li class="nav-item">
+                        <a href="#loginreg" class="btn btn-info btn-sm btn-round"><?php if(isset($_SESSION['user_id'])){echo "Mein Konto";}else{echo"Login";} ?><i class="fa fa-sign-in" aria-hidden="true"></i></a>
                     </li>
 
                 </ul>
@@ -145,7 +155,7 @@
                             <div class="description">
                                 <h4 class="info-title">Identitätsüberprüfung</h4>
                                 <br/>
-                                <p>Die für Viele Bank Transaktionen verwendeten Methoden PostIdent und VideoIdent dauern zwischen 10 Minuten und mehreren Tagen. Mit IDEasy kann eine Identitätsprüfung schnell und einfach mittels dem IDEasy bestätigten Account erfolgen.</p>
+                                <p>Die für Viele Bank Transaktionen verwendeten Methoden PostIdent und VideoIdent dauern zwischen 10 Minuten und mehreren Tagen. Mit IDEasy kann eine Identitätsprüfung schnell und einfach mittels dem bestätigten IDEasy Account erfolgen.</p>
                             </div>
                         </div>
                     </div>
@@ -161,7 +171,7 @@
                 <div class="row">
                     <div class="col-md-8 offset-md-2 text-center">
                         <h2 class="title">Wie kann ich einen Account erstellen?</h2>
-                        <p class="description">Wenn Du von den Vorteilen eines kostenlosen IDEasy Accounts profitieren willst, fülle die nachfolgenden Felder aus. Vorerst benötigen wir nur Deinen Namen, Deine E-Mail Adresse und ein Passwort. Danach wirst Du zur Bestätigung Deines Accounts auf eine Seite weitergeleitet, wo Du mit einem Mitarbeiter ein Video Telefonat zur Bestätigung deiner Identität durchführst. Bitte halte Deinen Personalausweis bereit und nutze einen Computer mit WebCam, alternativ kannst Du auch unsere iOS oder Android App benutzen. Nach dem Video Telefonat ist Dein Account bestätigt und kann benutzt werden.</p>
+                        <p class="description">Wenn Du von den Vorteilen eines kostenlosen IDEasy Accounts profitieren willst, fülle die nachfolgenden Felder aus. Vorerst benötigen wir nur Deinen Namen, Deine E-Mail Adresse und ein Passwort. Danach wirst Du zur Bestätigung Deines Accounts auf eine Seite weitergeleitet, wo Du mit einem Mitarbeiter ein Video Telefonat zur Bestätigung deiner Identität durchführst. Bitte halte Deinen Personalausweis bereit und nutze einen Computer mit WebCam. Nach dem Video Telefonat ist Dein Account bestätigt und kann verwendet werden.</p>
                     </div>
                 </div>
             </div>
@@ -171,6 +181,7 @@
             <div class="section section-nucleo-icons">
                 <div class="container">
                     <div class="row">
+                    	<?php if(!isset($_SESSION['user_id'])){ ?>
                         <div class="col-md-8 offset-md-2">
 
                             <div class="nav-tabs-navigation">
@@ -189,7 +200,7 @@
                             <div id="my-tab-content" class="tab-content text-center">
                                 <div class="tab-pane active" id="register" role="tabpanel">
                                     <h2>Account erstellen</h2>
-
+                                
                                     <div class="col-md-8 offset-md-2">
                                         <hr>
                                     </div>
@@ -210,35 +221,36 @@
 
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
-                                                        <input type="email" id="email" name="email" class="form-control" required="" placeholder="Email">
+                                                        <input type="email" id="email" name="email" class="form-control" required="" placeholder="Email" onkeyup="myFunction()">
                                                     </div>
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
-                                                        <input type="email" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen">
+                                                        <input type="email" id="emailBestaetigen" name="emailBestaetigen" class="form-control" required="" placeholder="Email bestätigen" onkeyup="myFunction()">
 
                                                     </div>
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
-                                                        <input type="text" id="passwort" name="passwort" class="form-control" required="" placeholder="Passwort">
+                                                        <input type="password" id="passwort" name="passwort" class="form-control" required="" placeholder="Passwort" onkeyup="myFunction()">
                                                     </div>
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-key-25"></i></span>
-                                                        <input type="text" id="passwortBestaetigen" name="passwortBestaetigen" class="form-control" required="" placeholder="Passwort wiederholen">
+                                                        <input type="password" id="passwortBestaetigen" name="passwortBestaetigen" class="form-control" required="" placeholder="Passwort wiederholen" onkeyup="myFunction()">
                                                     </div>
 
 
-                                                    <div class="alert alert-danger alert-with-icon" data-notify="container">
+                                                    <div id="alert" class="alert alert-danger alert-with-icon" data-notify="container">
                                                         <div class="container">
                                                             <div class="alert-wrapper">
                                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                                     <i class="nc-icon nc-simple-remove"></i>
                                                                 </button>
-                                                                <div class="message"><i class="nc-icon nc-bell-55"></i> Bitte achte darauf, dass beide Passwörter übereinstimmen!</div>
+                                                                <div class="message"><i class="nc-icon nc-bell-55"></i>Bitte überprüfe, ob beide E-Mail Adressen und Passwörter übereinstimmen.</div>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <button type="submit" class="btn btn-info btn-round">Register</button>
+                                                    <button type="submit" class="btn btn-info btn-round <?php if(isset($_SESSION['user_id'])){echo "disabled";} ?>">Register</button>
+
                                                 </form>
                                             </div>
 
@@ -256,14 +268,18 @@
                                         <div class="row">
                                             <div class="col-sm-6">
 
+											<form class="form-horizontal" action="login.php" method="post">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="Email">
+                                                    <input type="email" id="email" name="email" class="form-control" placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" placeholder="Passwort">
-
+                                                    <input type="password" id="password" name="password" class="form-control" placeholder="Passwort">
                                                 </div>
-                                                <button type="button" class="btn btn-info btn-round">Login</button>
+                                
+												<input type="hidden" name="aktion" value="login">
+                                                <button type="submit" class="btn btn-info btn-round <?php if(isset($_SESSION['user_id'])){echo "disabled";} ?>">Login</button>
+                                               
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
@@ -274,7 +290,7 @@
                     </div>
                 </div>
             </div>
-
+             <?php } ?>
 
 
             <div class="section landing-section">
@@ -340,29 +356,31 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <script>
-    $(function() {
-        jQuery.fn.extend({
-            disable: function(state) {
-                return this.each(function() {
-                    this.disabled = state;
-                });
-            }
-        });
-    });
-
-
     
     
-    $('#passwortBestaetigen').keyup(function() {
-        var _txt1 = $('#passwort').val();
-        var _txt2 = $('#passwortBestaetigen').val();
-            
-        if (_txt1 == _txt2) {
-            $('#registerbtn').disable(true);
+    
+    function myFunction() {
+        
+        var firstpw = document.getElementById("passwort").value;
+        var secondpw = document.getElementById("passwortBestaetigen").value;
+        var firstmail = document.getElementById('email').value;
+        var secondmail = document.getElementById('emailBestaetigen').value;
+        
+
+    
+    if (firstmail === secondmail) {
+        if (firstpw === secondpw) {
+            document.getElementById("btn").disabled = false; 
+        document.getElementById('alert').style.display = 'none'
         } else {
-             $('#registerbtn').disable(false);
+            document.getElementById("btn").disabled = true; 
+    document.getElementById('alert').style.display = 'block'
         }
-    });
+    } else {
+        document.getElementById("btn").disabled = true; 
+    document.getElementById('alert').style.display = 'block'
+    }}
+    
 </script>
 
 <script src="assets/js/scroll.js" type="text/javascript"></script>
