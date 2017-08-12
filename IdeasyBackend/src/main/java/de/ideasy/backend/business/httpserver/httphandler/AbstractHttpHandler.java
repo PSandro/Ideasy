@@ -34,7 +34,7 @@ public abstract class AbstractHttpHandler implements HttpHandler {
         }
         final Map<String, String> propertyMap = QueryUtil.queryToMap(query);
 
-        JsonObject handlingResponse = this.handleRequest(propertyMap, address);
+        final JsonObject handlingResponse = this.handleRequest(propertyMap, address);
 
         if (handlingResponse == null || handlingResponse.isJsonNull()) {
             JsonObject errorObject = new JsonObject();
@@ -49,7 +49,7 @@ public abstract class AbstractHttpHandler implements HttpHandler {
     }
 
     public JsonObject buildErrorObject(final String message) {
-        JsonObject jsonObject = new JsonObject();
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("success", "false");
         jsonObject.addProperty("message", message);
         return jsonObject;
@@ -58,10 +58,10 @@ public abstract class AbstractHttpHandler implements HttpHandler {
 
     public abstract JsonObject handleRequest(Map<String, String> propertyMap, InetSocketAddress inetSocketAddress);
 
-    public void respond(final JsonObject response, HttpExchange exchange) throws IOException {
-        String rawResponse = response.toString();
+    private void respond(final JsonObject response, HttpExchange exchange) throws IOException {
+        final String rawResponse = response.toString();
         exchange.sendResponseHeaders(200, rawResponse.length());
-        OutputStream os = exchange.getResponseBody();
+        final OutputStream os = exchange.getResponseBody();
         os.write(rawResponse.getBytes());
         os.close();
     }
