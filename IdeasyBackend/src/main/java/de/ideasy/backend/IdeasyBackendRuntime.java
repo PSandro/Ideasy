@@ -34,7 +34,7 @@ public final class IdeasyBackendRuntime {
     private final IInformationManager informationManager;
     private final Logger logger;
 
-    public IdeasyBackendRuntime() throws IOException {
+    public IdeasyBackendRuntime() throws Exception {
         this.logger = LoggerFactory.getLogger(IdeasyBackendRuntime.class);
         this.logger.info(LOGO);
         this.getLogger().info("Initialising...");
@@ -45,7 +45,7 @@ public final class IdeasyBackendRuntime {
                 "codedesign"
                 , 3306));
         this.informationManager = new InformationManager(dataManager);
-        this.httpServer = new IdeasyHttpServer(8000, dataManager, informationManager);
+        this.httpServer = new IdeasyHttpServer(8000, "test", dataManager, informationManager);
         this.getLogger().info("starting console...");
         new IdeasyConsole(new Scanner(System.in), this.dataManager, this.httpServer);
         this.getLogger().info("starting websocket...");
@@ -57,6 +57,8 @@ public final class IdeasyBackendRuntime {
         try {
             new IdeasyBackendRuntime();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
