@@ -258,10 +258,12 @@
                                         <div class="row">
                                             <div class="col-sm-6">
 
-                                                <div class="form-group">
+                                                <div class="input-group form-group">
+                                                    <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
                                                     <input type="email" class="form-control" placeholder="Email">
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="input-group form-group">
+                                                    
                                                     <input type="password" class="form-control" placeholder="Passwort">
 
                                                 </div>

@@ -59,10 +59,24 @@
         a {
             text-decoration: underline;
         }
+        
+        .backbtn {
+            width: auto;
+            height: auto;
+            padding: 10px;
+            border: 1px solid white;
+            background: white;
+            border-radius: 100px;
+            color: black;
+            margin: 25px;
+            position: fixed;
+        }
     </style>
     <body>
         
         <div class="left">
+            <input class="backbtn" type="button" value="Zurück zu Lieferando" onclick="history.back()">
+  </input>
             <img class="logo" src="lieferando-logo.png">
         </div>
         <div class="right">
