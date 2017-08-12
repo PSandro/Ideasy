@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+require "db.php";
+
+/*if(!isset($_SESSION['user_id'])){
+    header("Location: index.php");
+}*/
+
+
+$records = $conn->prepare('SELECT lastName, firstName FROM ideasyUserData WHERE id = :id');
+$records->bindParam(':id', $_SESSION['user_id']);
+$records->execute();
+$results = $records->fetch(PDO::FETCH_ASSOC);
+
+
+$lastName = $results['lastName'];
+$firstName = $results['firstName'];
+
+
+?>
+
 <!doctype html>
 <html lang="de">
 <head>
@@ -151,12 +173,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
-                <h2>Hallo {Name}</h2><br/>
+                <h2>Hallo <?php echo $firstName; echo " "; echo $lastName; ?></h2><br/>
                 <p class="description">
                     Nur noch ein Schritt bis Dein Account bestätigt ist. Dazu kannst Du ein Video
                     Telefonat mit einem Mitarbeiter durchführen. Das dient zur Bestätigung Deiner Identität und Deiner
                     Daten. Alternativ steht auch der PostIdent Service der Deutschen Post zur Verfügung. Klicke dafür
-                    <a href="#">hier</a><br/><br/><a id="lala" href="#lol" onclick="myfuncc()">Videotelefonat starten</a>
+                    <a href="#">hier</a><br/><br/><a id="lala" href="#lol" onclick="myfuncc()">Videotelefonat starten</a><br>
+                     <a href="index.php">Hier kommst du zurück zur Hauptseite</a>
                 </p>
             </div>
 

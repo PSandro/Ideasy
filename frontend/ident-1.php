@@ -7,7 +7,6 @@ require "db.php";
     header("Location: index.php");
 }*/
 
-echo $_SESSION['user_id'];
 
 $records = $conn->prepare('SELECT lastName, firstName FROM ideasyUserData WHERE id = :id');
 $records->bindParam(':id', $_SESSION['user_id']);
@@ -62,8 +61,8 @@ $firstName = $results['firstName'];
 </div>
 <div class="row">
     <div class="rowwe"><br/>
-            <h3><?php echo $firstName;
-                echo $lastName; ?></h3><br/>
+            <h3><?php echo $firstName; echo " "; echo $lastName; ?></h3><br/>
+            <form class="form-horizontal" action="register.php" method="post">
             <div class="input-group form-group">
                 <span class="input-group-addon"><i class="nc-icon nc-calendar-60"></i></span>
                 <input type="date" id="birth" name="birth" class="form-control" required="" placeholder="Geburtsdatum">
@@ -105,8 +104,8 @@ $firstName = $results['firstName'];
                        placeholder="Gültigkeitsende Ausweis">
             </div>
 
-            <button type="button" class="btn btn-danger">Weiter</button>
-
+            <button type="submit" class="btn btn-danger">Weiter</button>
+			</form>
 
     </div>
 </div>

@@ -32,7 +32,7 @@
 									
 									
 									//Umleitung auf Mainpage
-									header("Location: ident-1.php");
+									header("Location: index.php");
 									//die();
 									//echo $_SESSION['user_id'];
 
