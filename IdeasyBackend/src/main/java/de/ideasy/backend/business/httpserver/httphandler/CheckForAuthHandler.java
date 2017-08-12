@@ -2,7 +2,6 @@ package de.ideasy.backend.business.httpserver.httphandler;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import de.ideasy.backend.business.information.FormattedAddress;
 import de.ideasy.backend.business.information.HomeAddress;
 import de.ideasy.backend.business.information.IInformationManager;
 import de.ideasy.backend.business.information.InformationManager;
