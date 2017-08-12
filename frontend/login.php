@@ -28,8 +28,11 @@
 
 									$_SESSION['user_id'] = $results['id'];
 									
+									
+									
+									
 									//Umleitung auf Mainpage
-									header("Location: index.php");
+									header("Location: ident-1.php");
 									//die();
 									//echo $_SESSION['user_id'];
 
@@ -38,5 +41,8 @@
 									}
 
 									endif;
+									
+									
+									
     
 ?>

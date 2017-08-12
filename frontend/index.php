@@ -74,17 +74,21 @@ session_start();
                 <a class="navbar-brand" href="index.html"><img id="logo" src="ideasy-logo-white.png" width="200" height="40" alt="Ideasy">
                 </a>
             </div>
+            
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
+                	<?php if(!isset($_SESSION['user_id'])){ ?>
                     <li class="nav-item">
-
                         <a href="#about" class="nav-link"><i class="nc-icon"></i>Was ist IDEasy</a>
                     </li>
                     <li class="nav-item">
                         <a href="#loginreg" class="nav-link"><i class="nc-icon"></i>Registrieren</a>
-
                     </li>
-
+                    <?php }else{ ?>
+                    <li class="nav-item">
+                        <a href="logout.php" class="nav-link"><i class="nc-icon"></i>Logout</a>
+                    </li>
+                    <?php } ?>
                     <li class="nav-item">
                         <a href="#loginreg" class="btn btn-info btn-sm btn-round"><?php if(isset($_SESSION['user_id'])){echo "Mein Konto";}else{echo"Login";} ?><i class="fa fa-sign-in" aria-hidden="true"></i></a>
                     </li>

@@ -1,3 +1,25 @@
+<?php
+	session_start();
+	
+	require "db.php";
+	
+	if(!isset($_SESSION['user_id'])){
+		header("Location: index.php");
+	}
+	
+	echo $_SESSION['user_id'];
+	
+									$records = $conn->prepare('SELECT lastName, firstName FROM ideasyUserData WHERE id = :id');
+									$records->bindParam(':id', $_SESSION['user_id']);
+									$records->execute();
+									$results = $records->fetch(PDO::FETCH_ASSOC);
+
+									
+									$lastName = $results['lastName'];
+									$firstName = $results['firstName'];
+									
+	
+?>
 <!doctype html>
 <html lang="de">
 <head>
@@ -131,7 +153,7 @@
         
         <h2>Bitte überprüfe nochmal Deine Daten</h2><br/>
         <div class="col-md-3">
-<h3>Max Müller</h3><br/>
+<h3><?php echo $firstName; echo $lastName; ?></h3><br/>
                                                     <div class="input-group form-group">
                                                         <span class="input-group-addon"><i class="nc-icon nc-email-85"></i></span>
                                                         <input type="email" id="email" name="email" class="form-control" required="" placeholder="Email" onkeyup="myFunction()">
