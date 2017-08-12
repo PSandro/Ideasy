@@ -59,10 +59,24 @@
         a {
             text-decoration: underline;
         }
+        
+        .backbtn {
+            width: auto;
+            height: auto;
+            padding: 10px;
+            border: 1px solid white;
+            background: white;
+            border-radius: 100px;
+            color: black;
+            margin: 25px;
+            position: fixed;
+        }
     </style>
     <body>
         
         <div class="left">
+            <input class="backbtn" type="button" value="Zurück zu Lieferando" onclick="history.back()">
+  </input>
             <img class="logo" src="lieferando-logo.png">
         </div>
         <div class="right">
@@ -79,7 +93,7 @@
                                                     </div></div>
             <button type="button" class="btn btn-info">Anmelden</button>
             <br/><br/>
-            <div class="help"><a href="" data-toggle="tooltip" data-placement="bottom" title="Pech gehabt! 😂 Diese Funktion existiert nicht wirklich">Passwort vergessen</a> | Noch kein Account? <a href="http://localhost/Ideasy/frontend/">Registrieren</a></div>
+            <div class="help"><a href="" data-toggle="tooltip" data-placement="bottom" title="Diese Funktion existiert nicht wirklich">Passwort vergessen</a> | Noch kein Account? <a href="http://localhost/Ideasy/frontend/">Registrieren</a></div>
         </div>
       
         

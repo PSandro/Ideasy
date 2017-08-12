@@ -1,3 +1,4 @@
+
 <?php
 	session_start();
 	
@@ -40,6 +41,7 @@
     <style>
         body {
             margin-left: 40px;
+
             }
         
         .header {
