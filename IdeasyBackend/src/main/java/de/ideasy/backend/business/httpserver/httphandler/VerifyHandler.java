@@ -70,7 +70,7 @@ public class VerifyHandler extends AbstractHttpHandler {
             String rawUserAttribut = (String) entry.getKey();
             String value = (String) entry.getValue();
 
-            UserAttribut match = UserAttribut.fetchByFieldName(value);
+            UserAttribut match = UserAttribut.fetchByFieldName(rawUserAttribut);
             if (match == null) {
                 return super.buildErrorObject(String.format("No UserAttribut for field '%s' was found", rawUserAttribut));
             } else {
