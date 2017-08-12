@@ -66,7 +66,6 @@ public class LoginHandler extends AbstractHttpHandler {
         /* AUTHENTICATION */
 
         if (!HashCompareUtil.checkPassword(hashedPassword, user.getPassword())) {
-            //if (!hashedPassword.equals(user.getPassword())) {
             //TODO add more authentication thingies bla bla
             final AuthLog authFailLog = new AuthLog(user.getId(), thirdPartyInformation.getSecurityCustomer().getId(), System.currentTimeMillis(), authWay, thirdPartyInformation.getPriority(), "", AuthStatus.FAIL);
             try {
@@ -76,7 +75,7 @@ public class LoginHandler extends AbstractHttpHandler {
             }
             return super.buildErrorObject("wrong password!");
         }
-        final AuthLog authLog = new AuthLog(user.getId(), -1, System.currentTimeMillis(), authWay, thirdPartyInformation.getPriority(), "", AuthStatus.SUCCESS);
+        final AuthLog authLog = new AuthLog(user.getId(), thirdPartyInformation.getSecurityCustomer().getId(), System.currentTimeMillis(), authWay, thirdPartyInformation.getPriority(), "", AuthStatus.SUCCESS);
         try {
             this.dataManager.saveAuthLog(authLog);
         } catch (SQLException e) {

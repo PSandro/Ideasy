@@ -4,8 +4,6 @@ import com.google.common.base.Preconditions;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import de.ideasy.backend.business.customer.SecurityCustomer;
-import de.ideasy.backend.business.information.FormattedAddress;
-import de.ideasy.backend.business.information.HomeAddress;
 import de.ideasy.backend.persistence.AuthLog;
 import de.ideasy.backend.persistence.User;
 import de.ideasy.backend.persistence.UserInformation;
@@ -90,10 +88,11 @@ public class MySQLClient {
             final int id = resultSet.getInt("id");
             final String companyName = resultSet.getString("companyName");
             final String securityKey = resultSet.getString("securityKey");
+            final String apiResponseLink = resultSet.getString("apiLink");
             final long registration = resultSet.getLong("registration");
             final long expiration = resultSet.getLong("expiration");
             resultSet.close();
-            return new SecurityCustomer(id, companyName, securityKey, registration, expiration);
+            return new SecurityCustomer(id, companyName, securityKey, apiResponseLink, registration, expiration);
         }
     }
 
