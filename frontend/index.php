@@ -147,7 +147,7 @@
                             <div class="description">
                                 <h4 class="info-title">Identitätsüberprüfung</h4>
                                 <br/>
-                                <p>Die für Viele Bank Transaktionen verwendeten Methoden PostIdent und VideoIdent dauern zwischen 10 Minuten und mehreren Tagen. Mit IDEasy kann eine Identitätsprüfung schnell und einfach mittels dem IDEasy bestätigten Account erfolgen.</p>
+                                <p>Die für Viele Bank Transaktionen verwendeten Methoden PostIdent und VideoIdent dauern zwischen 10 Minuten und mehreren Tagen. Mit IDEasy kann eine Identitätsprüfung schnell und einfach mittels dem bestätigten IDEasy Account erfolgen.</p>
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                 <div class="row">
                     <div class="col-md-8 offset-md-2 text-center">
                         <h2 class="title">Wie kann ich einen Account erstellen?</h2>
-                        <p class="description">Wenn Du von den Vorteilen eines kostenlosen IDEasy Accounts profitieren willst, fülle die nachfolgenden Felder aus. Vorerst benötigen wir nur Deinen Namen, Deine E-Mail Adresse und ein Passwort. Danach wirst Du zur Bestätigung Deines Accounts auf eine Seite weitergeleitet, wo Du mit einem Mitarbeiter ein Video Telefonat zur Bestätigung deiner Identität durchführst. Bitte halte Deinen Personalausweis bereit und nutze einen Computer mit WebCam. Nach dem Video Telefonat ist Dein Account bestätigt und kann zur Bestätigung verwendet werden.</p>
+                        <p class="description">Wenn Du von den Vorteilen eines kostenlosen IDEasy Accounts profitieren willst, fülle die nachfolgenden Felder aus. Vorerst benötigen wir nur Deinen Namen, Deine E-Mail Adresse und ein Passwort. Danach wirst Du zur Bestätigung Deines Accounts auf eine Seite weitergeleitet, wo Du mit einem Mitarbeiter ein Video Telefonat zur Bestätigung deiner Identität durchführst. Bitte halte Deinen Personalausweis bereit und nutze einen Computer mit WebCam. Nach dem Video Telefonat ist Dein Account bestätigt und kann verwendet werden.</p>
                     </div>
                 </div>
             </div>
