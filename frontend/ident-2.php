@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+require "db.php";
+
+/*if(!isset($_SESSION['user_id'])){
+    header("Location: index.php");
+}*/
+
+
+$records = $conn->prepare('SELECT lastName, firstName FROM ideasyUserData WHERE id = :id');
+$records->bindParam(':id', $_SESSION['user_id']);
+$records->execute();
+$results = $records->fetch(PDO::FETCH_ASSOC);
+
+
+$lastName = $results['lastName'];
+$firstName = $results['firstName'];
+
+
+?>
+
 <!doctype html>
 <html lang="de">
 <head>
@@ -20,19 +42,14 @@
 
         }
 
+        h2 {
+            color: #fff !important;
+        }
+
         .imgadd {
             background: url(schnecke123.png) !important;
             background-repeat: no-repeat;
             display: block !important;
-        }
-
-        .header {
-            margin-left: 60px !important;
-            margin-top: 20px !important;
-        }
-
-        .ttext {
-            margin-left: 60px;
         }
 
         .text {
@@ -49,10 +66,6 @@
             transform: translate(-50%, -50%);
         }
 
-        .good {
-            color: green;
-        }
-
         .videocall {
             width: 900px;
             height: 500px;
@@ -64,22 +77,9 @@
             position: relative;
         }
 
-        .videocall-good {
-            width: 900px;
-            height: 500px;
-            background: green;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 100px;
-            position: relative;
-        }
-
-        .button {
-            margin: 90px auto;
-        }
-
         #lala {
             text-decoration: underline;
+            color: #fff !important;
         }
 
         .loader,
@@ -169,18 +169,24 @@
     </script>
 </head>
 <body>
-<div class="header">
-    <h1>Hallo Susi Klein,</h1>
-    <h3>Nur noch ein Schritt bis Dein Account bestätigt ist.</h3><br/><br/>
-    <p>Zur Bestätigung Deiner Identität kannst Du ein Video Telefonat mit einem Mitarbeiter durchführen. Das dient zu
-        Deiner eigenen Sicherheit und dauert nur 5 Minuten. Dein Account ist sofort bereit. Du brauchst nur einen
-        Computer mit einer Webcam. Halte bitte Deinen Personalausweis bereit. ALternativ steht auch der PostIdent
-        Service der Deutschen Post zur Verfügung. Klicke dafür bitte <a href="">hier</a>.</p><br/><br/><br/><a id="lala"
-                                                                                                               href="#lol"
-                                                                                                               onclick="myfuncc()">Videotelefonat
-    starten</a>
+<div class="section section-dark darktranss">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h2>Hallo <?php echo $firstName; echo " "; echo $lastName; ?></h2><br/>
+                <p class="description">
+                    Nur noch ein Schritt bis Dein Account bestätigt ist. Dazu kannst Du ein Video
+                    Telefonat mit einem Mitarbeiter durchführen. Das dient zur Bestätigung Deiner Identität und Deiner
+                    Daten. Alternativ steht auch der PostIdent Service der Deutschen Post zur Verfügung. Klicke dafür
+                    <a href="#">hier</a><br/><br/><a id="lala" href="#lol" onclick="myfuncc()">Videotelefonat starten</a><br>
+                     <a href="index.php">Hier kommst du zurück zur Hauptseite</a>
+                </p>
+            </div>
 
+        </div>
+    </div>
 </div>
+
 <div id="lol" class="videocall camera">
     <p class="text">Du wirst mit einem Mitarbeiter verbunden ... </p>
     <div class="bfl">
@@ -189,14 +195,6 @@
 </div>
 
 </body>
-
-
 <script src="assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
-<script src="assets/js/tether.min.js" type="text/javascript"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/js/bootstrap-switch.min.js"></script>
-<script src="assets/js/nouislider.js"></script>
-<script src="assets/js/moment.min.js"></script>
-<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 <script src="assets/js/paper-kit.js?v=2.0.0"></script>
 </html>
