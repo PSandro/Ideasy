@@ -7,6 +7,7 @@ import de.ideasy.backend.business.information.IInformationManager;
 import de.ideasy.backend.business.information.InformationManager;
 import de.ideasy.backend.persistence.DataManager;
 import de.ideasy.backend.persistence.IDataManager;
+import de.ideasy.backend.persistence.configuration.PropertiesManager;
 import de.ideasy.backend.persistence.mysql.MySQLInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,18 +33,16 @@ public final class IdeasyBackendRuntime {
     private final IDataManager dataManager;
     private final IHttpServer httpServer;
     private final IInformationManager informationManager;
+    private final PropertiesManager propertiesManager;
     private final Logger logger;
 
     public IdeasyBackendRuntime() throws IOException {
         this.logger = LoggerFactory.getLogger(IdeasyBackendRuntime.class);
         this.logger.info(LOGO);
         this.getLogger().info("Initialising...");
-        this.dataManager = new DataManager(new MySQLInfo(
-                "psandro.de",
-                "cd",
-                "ideasy",
-                "codedesign"
-                , 3306));
+        this.propertiesManager = new PropertiesManager();
+        final MySQLInfo mySQLInfo = propertiesManager.getMySQLInfo();
+        this.dataManager = new DataManager(mySQLInfo);
         this.informationManager = new InformationManager(dataManager);
         this.httpServer = new IdeasyHttpServer(8000, dataManager, informationManager);
         this.getLogger().info("starting console...");
